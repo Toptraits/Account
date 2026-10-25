@@ -1,0 +1,195 @@
+[2026-10-19 11:20:27] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"708671"} 
+[2026-10-19 11:20:50] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"621142"} 
+[2026-10-19 11:37:06] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"504892"} 
+[2026-10-19 11:58:14] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"947707"} 
+[2026-10-19 14:30:25] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"784205"} 
+[2026-10-19 15:17:43] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"868902"} 
+[2026-10-19 15:20:17] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"997039"} 
+[2026-10-19 15:21:58] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"890799"} 
+[2026-10-19 15:46:39] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"267859"} 
+[2026-10-19 15:49:38] local.ERROR: Route [login] not defined. {"exception":"[object] (Symfony\\Component\\Routing\\Exception\\RouteNotFoundException(code: 0): Route [login] not defined. at /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Routing/UrlGenerator.php:542)
+[stacktrace]
+#0 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(870): Illuminate\\Routing\\UrlGenerator->route('login', Array, true)
+#1 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(291): route('login')
+#2 [internal function]: Illuminate\\Foundation\\Configuration\\ApplicationBuilder->{closure:{closure:Illuminate\\Foundation\\Configuration\\ApplicationBuilder::withMiddleware():289}:291}(Object(Illuminate\\Http\\Request))
+#3 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(117): call_user_func(Object(Closure), Object(Illuminate\\Http\\Request))
+#4 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(104): Illuminate\\Auth\\Middleware\\Authenticate->redirectTo(Object(Illuminate\\Http\\Request))
+#5 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(87): Illuminate\\Auth\\Middleware\\Authenticate->unauthenticated(Object(Illuminate\\Http\\Request), Array)
+#6 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(61): Illuminate\\Auth\\Middleware\\Authenticate->authenticate(Object(Illuminate\\Http\\Request), Array)
+#7 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'sanctum')
+#8 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#9 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(833): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#10 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(812): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#11 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(776): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#12 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(765): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#13 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#14 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))
+#15 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():178}(Object(Illuminate\\Http\\Request))
+#16 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#19 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#22 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#24 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(74): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#26 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#28 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#30 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(28): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#32 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}(Object(Illuminate\\Http\\Request))
+#34 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#35 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#36 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1228): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#37 /home/avinash/school-os-backend-app/public/index.php(20): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#38 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/home/avinash/s...')
+#39 {main}
+"} 
+[2026-10-19 16:03:17] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"806836"} 
+[2026-10-20 01:02:47] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"328594"} 
+[2026-10-20 04:16:25] local.ERROR: Cannot use App\Http\Controllers\Api\PaymentController as PaymentController because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\Api\\PaymentController as PaymentController because the name is already in use at /home/avinash/school-os-backend-app/routes/api.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-10-20 04:16:25] local.ERROR: Cannot use App\Http\Controllers\Api\PaymentController as PaymentController because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\Api\\PaymentController as PaymentController because the name is already in use at /home/avinash/school-os-backend-app/routes/api.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-10-20 04:22:10] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"267810"} 
+[2026-10-20 10:06:07] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at /home/avinash/school-os-backend-app/app/Http/Controllers/Api/DashboardController.php:4)
+[stacktrace]
+#0 {main}
+"} 
+[2026-10-20 10:12:01] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"542702"} 
+[2026-10-20 10:17:41] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"729995"} 
+[2026-10-20 11:17:17] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"640774"} 
+[2026-10-20 11:19:28] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"858480"} 
+[2026-10-20 12:21:42] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"232343"} 
+[2026-10-20 12:23:57] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"533782"} 
+[2026-10-20 13:54:51] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"755892"} 
+[2026-10-20 14:00:50] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"677876"} 
+[2026-10-20 14:38:10] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"189956"} 
+[2026-10-20 14:39:31] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"819874"} 
+[2026-10-21 01:11:00] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"567310"} 
+[2026-10-21 02:27:53] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"621578"} 
+[2026-10-21 02:42:47] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"373564"} 
+[2026-10-21 02:43:37] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"187523"} 
+[2026-10-21 02:45:01] local.INFO: School OS development OTP {"mobile":"9448102785","otp":"535807"} 
+[2026-10-21 05:16:12] local.ERROR: School ERP OTP email delivery failed. {"user_id":1,"exception":"Symfony\\Component\\Mailer\\Exception\\TransportException"} 
+[2026-10-21 05:21:54] local.ERROR: School ERP OTP email delivery failed. {"user_id":1,"exception":"Symfony\\Component\\Mailer\\Exception\\TransportException"} 
+[2026-10-21 05:26:07] local.ERROR: School ERP OTP email delivery failed. {"user_id":1,"exception":"Symfony\\Component\\Mailer\\Exception\\TransportException","error":"Failed to authenticate on SMTP server with username \"avinashnew21@gmail.com\" using the following authenticators: \"LOGIN\", \"PLAIN\", \"XOAUTH2\". Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535-5.7.8 Username and Password not accepted. For more information, go to
+
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5a478bee46e88-36741f753f7sm3571995eec.27 - gsmtp\".\". Authenticator \"PLAIN\" returned \"Expected response code \"235\" but got empty code.\". Authenticator \"XOAUTH2\" returned \"Expected response code \"235\" but got empty code.\"."} 
+[2026-10-24 10:56:46] local.ERROR: syntax error, unexpected fully qualified name "\Database", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected fully qualified name \"\\Database\", expecting \"{\" at /home/avinash/school-os-backend-app/database/migrations/2026_10_24_105646_add_personal_details_to_students_table.php:3)
+[stacktrace]
+#0 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(149): Illuminate\\Filesystem\\Filesystem::{closure:Illuminate\\Filesystem\\Filesystem::requireOnce():145}()
+#1 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(611): Illuminate\\Filesystem\\Filesystem->requireOnce('/home/avinash/s...')
+#2 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(131): Illuminate\\Database\\Migrations\\Migrator->requireFiles(Array)
+#3 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(118): Illuminate\\Database\\Migrations\\Migrator->run(Array, Array)
+#4 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(685): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->{closure:Illuminate\\Database\\Console\\Migrations\\MigrateCommand::runMigrations():111}()
+#5 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(111): Illuminate\\Database\\Migrations\\Migrator->usingConnection(NULL, Object(Closure))
+#6 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(90): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#7 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#8 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#9 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#10 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#11 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/Container.php(803): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#12 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(292): Illuminate\\Container\\Container->call(Array)
+#13 /home/avinash/school-os-backend-app/vendor/symfony/console/Command/Command.php(285): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#14 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(261): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#15 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(1152): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#16 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(380): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\MigrateCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#17 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(219): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#18 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(205): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#19 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1243): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#20 /home/avinash/school-os-backend-app/artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#21 {main}
+"} 
+[2026-10-24 10:57:31] local.ERROR: syntax error, unexpected fully qualified name "\Database", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected fully qualified name \"\\Database\", expecting \"{\" at /home/avinash/school-os-backend-app/database/migrations/2026_10_24_105646_add_personal_details_to_students_table.php:3)
+[stacktrace]
+#0 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::{closure:Illuminate\\Filesystem\\Filesystem::getRequire():120}()
+#1 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(550): Illuminate\\Filesystem\\Filesystem->getRequire('/home/avinash/s...')
+#2 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(569): Illuminate\\Database\\Migrations\\Migrator->resolvePath('/home/avinash/s...')
+#3 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php(122): Illuminate\\Database\\Migrations\\Migrator->shouldSkip('/home/avinash/s...')
+#4 [internal function]: Illuminate\\Database\\Console\\Migrations\\StatusCommand->{closure:Illuminate\\Database\\Console\\Migrations\\StatusCommand::getStatusFor():117}('/home/avinash/s...', '2026_10_24_1056...')
+#5 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Collections/Arr.php(868): array_map(Object(Closure), Array, Array)
+#6 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(834): Illuminate\\Support\\Arr::map(Array, Object(Closure))
+#7 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php(117): Illuminate\\Support\\Collection->map(Object(Closure))
+#8 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php(77): Illuminate\\Database\\Console\\Migrations\\StatusCommand->getStatusFor(Array, Array)
+#9 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(685): Illuminate\\Database\\Console\\Migrations\\StatusCommand->{closure:Illuminate\\Database\\Console\\Migrations\\StatusCommand::handle():66}()
+#10 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php(66): Illuminate\\Database\\Migrations\\Migrator->usingConnection(NULL, Object(Closure))
+#11 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\StatusCommand->handle()
+#12 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#13 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#14 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#15 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/Container.php(803): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#16 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(292): Illuminate\\Container\\Container->call(Array)
+#17 /home/avinash/school-os-backend-app/vendor/symfony/console/Command/Command.php(285): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#18 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(261): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#19 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(1152): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#20 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(380): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\StatusCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#21 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(219): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#22 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(205): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#23 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1243): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 /home/avinash/school-os-backend-app/artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#25 {main}
+"} 
+[2026-10-24 10:57:31] local.ERROR: syntax error, unexpected fully qualified name "\Database", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected fully qualified name \"\\Database\", expecting \"{\" at /home/avinash/school-os-backend-app/database/migrations/2026_10_24_105646_add_personal_details_to_students_table.php:3)
+[stacktrace]
+#0 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(149): Illuminate\\Filesystem\\Filesystem::{closure:Illuminate\\Filesystem\\Filesystem::requireOnce():145}()
+#1 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(611): Illuminate\\Filesystem\\Filesystem->requireOnce('/home/avinash/s...')
+#2 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(131): Illuminate\\Database\\Migrations\\Migrator->requireFiles(Array)
+#3 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(118): Illuminate\\Database\\Migrations\\Migrator->run(Array, Array)
+#4 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(685): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->{closure:Illuminate\\Database\\Console\\Migrations\\MigrateCommand::runMigrations():111}()
+#5 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(111): Illuminate\\Database\\Migrations\\Migrator->usingConnection(NULL, Object(Closure))
+#6 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(90): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#7 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#8 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#9 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#10 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#11 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/Container.php(803): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#12 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(292): Illuminate\\Container\\Container->call(Array)
+#13 /home/avinash/school-os-backend-app/vendor/symfony/console/Command/Command.php(285): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#14 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(261): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#15 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(1152): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#16 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(380): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\MigrateCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#17 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(219): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#18 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(205): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#19 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1243): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#20 /home/avinash/school-os-backend-app/artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#21 {main}
+"} 
+[2026-10-24 11:03:12] local.ERROR: syntax error, unexpected fully qualified name "\Database", expecting "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected fully qualified name \"\\Database\", expecting \"{\" at /home/avinash/school-os-backend-app/database/migrations/2026_10_24_105646_add_personal_details_to_students_table.php:3)
+[stacktrace]
+#0 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::{closure:Illuminate\\Filesystem\\Filesystem::getRequire():120}()
+#1 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(550): Illuminate\\Filesystem\\Filesystem->getRequire('/home/avinash/s...')
+#2 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(569): Illuminate\\Database\\Migrations\\Migrator->resolvePath('/home/avinash/s...')
+#3 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php(122): Illuminate\\Database\\Migrations\\Migrator->shouldSkip('/home/avinash/s...')
+#4 [internal function]: Illuminate\\Database\\Console\\Migrations\\StatusCommand->{closure:Illuminate\\Database\\Console\\Migrations\\StatusCommand::getStatusFor():117}('/home/avinash/s...', '2026_10_24_1056...')
+#5 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Collections/Arr.php(868): array_map(Object(Closure), Array, Array)
+#6 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(834): Illuminate\\Support\\Arr::map(Array, Object(Closure))
+#7 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php(117): Illuminate\\Support\\Collection->map(Object(Closure))
+#8 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php(77): Illuminate\\Database\\Console\\Migrations\\StatusCommand->getStatusFor(Array, Array)
+#9 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(685): Illuminate\\Database\\Console\\Migrations\\StatusCommand->{closure:Illuminate\\Database\\Console\\Migrations\\StatusCommand::handle():66}()
+#10 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php(66): Illuminate\\Database\\Migrations\\Migrator->usingConnection(NULL, Object(Closure))
+#11 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\StatusCommand->handle()
+#12 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#13 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#14 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#15 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Container/Container.php(803): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#16 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(292): Illuminate\\Container\\Container->call(Array)
+#17 /home/avinash/school-os-backend-app/vendor/symfony/console/Command/Command.php(285): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#18 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(261): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#19 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(1152): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#20 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(380): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\StatusCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#21 /home/avinash/school-os-backend-app/vendor/symfony/console/Application.php(219): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#22 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(205): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#23 /home/avinash/school-os-backend-app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1243): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 /home/avinash/school-os-backend-app/artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#25 {main}
+"} 

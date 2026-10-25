@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toptraits School OS — Login & Accountant UI Preview</title>
+<style>
+:root{--navy:#070b1b;--bg:#0e1422;--panel:#172236;--panel2:#0d1422;--line:#27354f;--text:#f5f7ff;--muted:#9eafcc;--blue:#7ba0ff;--blue2:#2b50df;--teal:#087f78;--cyan:#117a92;--green:#37d49a;--amber:#ffb938;--orange:#ff963d;--red:#ff827c;--white:#fff;--shadow:0 24px 70px #0005}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}body{background:var(--navy);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #84aaff;outline-offset:2px}.topnav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 24px;background:#0e172a;border-bottom:1px solid #24314a;position:sticky;top:0;z-index:30}.brand{font-weight:800;letter-spacing:.2px}.brand em{font-style:normal;color:#2dd4bf}.navright{display:flex;gap:8px;flex-wrap:wrap}.navbtn{border:1px solid #34415a;color:#dce5fa;background:#101a2d;border-radius:10px;padding:9px 14px;font-weight:650}.navbtn.active{background:var(--blue);color:#081127;border-color:var(--blue)}.screen{display:none}.screen.active{display:block}.hintbar{background:#101827;color:#b5c4dd;border-bottom:1px solid #26344d;font-size:12px;padding:8px 20px;text-align:center}.login-stage{min-height:calc(100vh - 92px);padding:38px 22px;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 25% 15%,#112c44 0,transparent 48%),#030718}.login-card{display:grid;grid-template-columns:1fr 1fr;width:min(1120px,100%);min-height:610px;border:1px solid #d2d9e5;border-radius:26px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}.login-brand{padding:54px 48px 42px;background:linear-gradient(145deg,#0e7a72,#117a92 50%,#10243a);color:white;display:flex;flex-direction:column}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;margin-bottom:28px}.login-brand h1{font-size:clamp(32px,4vw,48px);line-height:1.11;letter-spacing:-1.1px;margin:0 0 22px;max-width:460px}.login-brand p{line-height:1.7;color:#e0f4f5;margin:0;max-width:410px}.featurelist{display:grid;gap:18px;padding:0;margin:32px 0 40px;list-style:none}.featurelist li:before{content:"✓";font-weight:800;margin-right:10px;color:#8cf9ec}.login-foot{margin-top:auto;font-size:12px;color:#d0f3f3}.login-form-side{display:flex;align-items:center;justify-content:center;padding:56px 7%}.login-form{width:min(450px,100%);color:#15213b}.smallcaps{font-size:12px;font-weight:800;letter-spacing:2px;color:#07867e;margin:0 0 18px}.login-form h2{font-size:34px;margin:0 0 16px;letter-spacing:-.6px}.subtext{color:#697994;line-height:1.6;margin:0 0 34px}.fieldlabel{display:block;color:#101b2f;font-weight:700;font-size:14px;margin:0 0 8px}.phonebox{display:flex;border:1px solid #d8deea;border-radius:14px;overflow:hidden;height:48px;box-shadow:0 1px 2px #0b16300b}.prefix{padding:12px 14px;border-right:1px solid #e3e7ee;color:#6a7488;background:#fafbfc}.phonebox input{border:0;outline:0;min-width:0;flex:1;padding:0 14px;color:#111827;background:white}.plaininput{width:100%;height:48px;border:1px solid #d8deea;border-radius:12px;padding:0 14px;color:#111827;background:#fff;margin-top:10px}.primary{border:0;border-radius:12px;background:var(--amber);color:#4b2a00;min-height:48px;padding:12px 18px;font-weight:800;width:100%;margin-top:24px}.primary:hover{filter:brightness(1.04)}.secondary{border:1px solid #d7dfeb;border-radius:11px;color:#20314e;background:#fff;padding:10px 14px;font-weight:700}.helptext{text-align:center;color:#97a5bc;font-size:12px;margin-top:24px;line-height:1.6}.status{font-size:13px;line-height:1.5;padding:11px 12px;border-radius:10px;margin-top:14px;display:none}.status.show{display:block}.status.info{background:#e8f5ff;color:#175b85}.status.error{background:#fff0ef;color:#a12626}.status.success{background:#e9fff4;color:#176b44}.otp-actions{display:flex;gap:9px;margin-top:12px}.otp-actions button{flex:1}.dash{background:var(--bg);min-height:calc(100vh - 92px)}.dashheader{position:sticky;top:57px;z-index:20;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 22px;background:#172137;border-bottom:1px solid #28334a}.rolebrand{font-size:15px;font-weight:800;white-space:nowrap}.office{white-space:nowrap;font-size:11px;padding:6px 11px;border-radius:20px;background:#10372d;color:#5ce6b2;font-weight:750}.searchwrap{display:flex;gap:8px;flex:1;min-width:270px;max-width:620px}.searchwrap input{height:48px;background:#0d1422;color:#f3f6ff;border:1px solid #25324a;border-radius:12px;padding:0 14px;min-width:0;flex:1}.copilotbtn{border:0;border-radius:12px;background:var(--blue);color:#071126;font-weight:800;padding:0 17px;min-height:48px;white-space:nowrap}.meta{font-size:12px;color:#adbedb;white-space:nowrap}.seg{display:flex;background:#101a2c;border:1px solid #293754;padding:3px;border-radius:12px;gap:2px}.seg button{background:transparent;color:#d2def4;border:0;border-radius:9px;padding:9px 11px;font-size:12px}.seg button.active{background:var(--blue);color:#081127;font-weight:800}.copilot-area{display:none;position:relative;z-index:10;max-width:1320px;margin:14px auto 0;padding:0 20px}.copilot-area.show{display:block}.copilotbox{border:1px solid #33415d;border-radius:16px;background:#111a2a;box-shadow:0 12px 35px #0003;overflow:hidden}.copilothead{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #283650;font-weight:800}.closebtn{border:1px solid #34445e;background:#17233a;color:#f3f6ff;border-radius:9px;width:34px;height:34px;font-size:22px;line-height:1}.chatbody{padding:13px 16px;display:grid;gap:10px;max-height:260px;overflow:auto}.chatmsg{padding:12px 14px;border:1px solid #2a3955;border-radius:12px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}.chatmsg.user{background:#1d2b4d}.chatmsg.assistant{background:#0b1321}.chaterror{padding:0 16px 12px;color:#ffaaa5;font-size:13px}.dashgrid{max-width:1320px;margin:0 auto;padding:22px 20px 42px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,.95fr);gap:18px;align-items:start}.leftcol,.rightcol{display:grid;gap:18px;min-width:0}.card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:18px;min-width:0}.sub{font-size:12px;color:var(--muted)}.hero .big{font-size:34px;letter-spacing:-1px;font-weight:850;margin:7px 0 14px}.big small{font-size:14px;color:#b8c7e0;letter-spacing:0;font-weight:550}.progress{height:11px;background:#293651;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:var(--green)}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px}.kpi{background:var(--panel2);border-radius:12px;padding:12px}.kpi span{display:block;color:#a9bdd9;font-size:12px;margin-bottom:5px}.kpi b{font-size:17px}.suggestion{padding:12px 13px;background:#1e2c4d;border-radius:12px;margin-top:12px;color:#e6edff;line-height:1.5;font-size:13px}.sectionhead{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:13px}.sectionhead h3,.card h3{margin:0;font-size:16px}.agingtop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.agingbar{display:flex;height:15px;overflow:hidden;border-radius:20px;gap:2px;margin-bottom:13px}.agingbar span:nth-child(1){background:var(--blue)}.agingbar span:nth-child(2){background:#f5b951}.agingbar span:nth-child(3){background:var(--orange)}.agingbar span:nth-child(4){background:var(--red)}.aginglegend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.aginglegend b{display:block;margin:4px 0}.aginglegend .sub{line-height:1.5}.sortrow{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin:13px 0}.studentlist{display:grid;gap:10px}.student{border:1px solid #2b3953;border-left:5px solid var(--orange);border-radius:13px;padding:12px;background:linear-gradient(95deg,#2b211d33,transparent 50%);display:grid;gap:9px}.student:nth-child(3n+1){border-left-color:var(--amber)}.student:nth-child(3n){border-left-color:var(--red)}.student.selected{outline:2px solid #80a3ff;outline-offset:1px}.studenttop{display:flex;justify-content:space-between;align-items:start;gap:14px}.studentname{font-weight:800}.studentmeta{font-size:12px;color:#a8bad5;margin-top:4px}.due{font-size:17px;font-weight:850;color:#ffb15d;white-space:nowrap}.badge{display:inline-block;margin-left:6px;border:1px solid currentColor;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:750;color:var(--orange)}.badge.today{color:var(--blue)}.studentactions{display:flex;gap:7px;flex-wrap:wrap}.actionbtn{background:transparent;border:1px solid #2d3a55;color:#e9efff;border-radius:10px;padding:9px 11px;font-size:12px;font-weight:750}.actionbtn.primarybtn{background:var(--blue);border-color:var(--blue);color:#081127}.actionbtn:hover{filter:brightness(1.12)}.paneltitle{font-size:16px;font-weight:800;margin:0 0 8px}.who{line-height:1.6;margin-bottom:14px;color:#dce6fa}.empty{color:#a4b4d0;line-height:1.6;font-size:13px}.field{display:block;margin:13px 0 0}.field label{display:block;font-size:12px;color:#d7e1f4;font-weight:750;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;background:#0c1422;border:1px solid #2a3954;border-radius:10px;color:#f2f6ff;padding:11px 12px;min-height:42px}.field textarea{min-height:82px;resize:vertical}.fieldrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modebuttons{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}.modebuttons button{border:1px solid #2a3954;background:#0d1524;color:#ebf1ff;border-radius:10px;padding:10px 3px}.modebuttons button.active{border-color:var(--blue);color:var(--blue);background:#1c2b4a}.wide{width:100%;margin-top:13px}.mutednote{color:#8fa2c0;font-size:11px;line-height:1.5;margin-top:12px}.attentiongrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.attention{background:#0e1727;border:1px solid #293751;border-radius:11px;padding:11px;font-size:12px;line-height:1.4}.attention b{display:block;font-size:19px;margin-bottom:5px}.toast{position:fixed;right:20px;bottom:20px;z-index:60;background:#e9fff4;color:#166343;border:1px solid #b4eed0;border-radius:12px;padding:12px 16px;box-shadow:var(--shadow);display:none;max-width:360px}.toast.show{display:block}.previewstamp{position:fixed;right:10px;bottom:8px;background:#0b1220dd;color:#99a9c1;font-size:10px;padding:6px 8px;border:1px solid #27344c;border-radius:8px;z-index:25}
+@media(max-width:1050px){.dashgrid{grid-template-columns:minmax(0,1fr)}.rightcol{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.dashheader{top:57px}.meta{white-space:normal}.login-card{min-height:0}.login-brand{padding:38px 32px}}
+@media(max-width:700px){.topnav{padding:12px 14px;align-items:flex-start;flex-direction:column}.login-stage{padding:20px 12px}.login-card{grid-template-columns:1fr;border-radius:20px}.login-brand{padding:30px 25px}.login-brand h1{font-size:33px}.featurelist{grid-template-columns:1fr 1fr;gap:11px;font-size:13px;margin:22px 0}.login-foot{margin-top:4px}.login-form-side{padding:34px 24px}.login-form h2{font-size:29px}.dashheader{position:static;padding:12px;gap:9px}.rolebrand{font-size:13px}.searchwrap{min-width:100%;order:3;max-width:none}.meta{font-size:11px}.dashgrid{padding:12px;gap:12px}.card{padding:14px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.aginglegend{grid-template-columns:repeat(2,minmax(0,1fr))}.rightcol{grid-template-columns:1fr}.attentiongrid{grid-template-columns:repeat(2,1fr)}.studenttop{flex-direction:column;gap:6px}.due{font-size:17px}.seg button{padding:8px 7px;font-size:11px}.copilot-area{padding:0 12px;margin-top:10px}}
+</style>
+</head>
+<body>
+<header class="topnav">
+  <div class="brand"><em>✦</em> Toptraits <span style="font-weight:500;color:#a8bad7">School OS · UI Preview</span></div>
+  <div class="navright" role="navigation" aria-label="Preview screens">
+    <button class="navbtn active" id="showLogin">Main Login</button>
+    <button class="navbtn" id="showAccountant">Accountant Dashboard</button>
+  </div>
+</header>
+<div class="hintbar">Standalone design preview · Uses illustrative demo records · No real SMS, payment, calling, messaging, or backend connection</div>
+
+<section class="screen active" id="loginScreen">
+  <div class="login-stage">
+    <div class="login-card">
+      <section class="login-brand">
+        <div class="eyebrow">SCHOOL MANAGEMENT PLATFORM</div>
+        <h1>Welcome to<br>School Platform</h1>
+        <p>One intelligent platform to manage your entire school from one place.</p>
+        <ul class="featurelist">
+          <li>Student &amp; Staff Management</li><li>Attendance &amp; Academics</li><li>Admissions &amp; Fees</li><li>Homework &amp; Exams</li><li>AI-powered School Automation</li>
+        </ul>
+        <div class="login-foot">Secure access for authorised school users.</div>
+      </section>
+      <section class="login-form-side">
+        <form class="login-form" id="loginForm">
+          <div class="smallcaps">LOGIN CREDENTIALS</div>
+          <h2 id="loginHeading">Welcome Back</h2>
+          <p class="subtext" id="loginSubtext">Sign in using your registered mobile number.</p>
+          <label class="fieldlabel" for="phone">Mobile number<span style="color:#ef4444">*</span></label>
+          <div class="phonebox"><span class="prefix">+91</span><input id="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="Enter 10-digit mobile number" required></div>
+          <div id="otpWrap" style="display:none;margin-top:20px"><label class="fieldlabel" for="otp">Enter OTP<span style="color:#ef4444">*</span></label><input class="plaininput" id="otp" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="Enter 6-digit OTP"></div>
+          <button class="primary" type="submit" id="submitLogin">Send OTP</button>
+          <div id="loginStatus" class="status info"></div>
+          <div id="otpActions" class="otp-actions" style="display:none"><button class="secondary" type="button" id="changeNumber">Use another number</button><button class="secondary" type="button" id="resendOtp">Resend OTP</button></div>
+          <div class="helptext">Don't have access? Contact your school administrator.<br><span style="display:block;margin-top:8px">This is a UI preview; OTP is not sent or verified here.</span></div>
+          <button class="secondary" type="button" style="width:100%;margin-top:14px" id="previewDashboard">Preview Accountant Dashboard →</button>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="accountantScreen">
+  <div class="dash">
+    <header class="dashheader">
+      <div class="rolebrand">Toptraits · Accountant</div>
+      <div class="office">● Office open until 5:00 PM</div>
+      <div class="searchwrap"><input id="topSearch" type="search" placeholder="Find a student or ask Copilot..." aria-label="Find a student or ask Copilot"><button class="copilotbtn" id="askCopilot">✦ Ask Copilot</button></div>
+      <div class="meta">Fees as on Mon, 19 Oct 2026</div>
+      <div class="seg" id="visibility"><button class="active" data-vis="hidden">Numbers hidden</button><button data-vis="masked">Masked</button><button data-vis="visible">Visible</button></div>
+    </header>
+
+    <div class="copilot-area" id="copilotArea"><div class="copilotbox"><div class="copilothead"><span>✦ Ask the AI accountant</span><button class="closebtn" id="closeCopilot" aria-label="Close Copilot response">×</button></div><div class="chatbody" id="chatBody"></div><div class="chaterror" id="chatError"></div></div></div>
+
+    <main class="dashgrid">
+      <section class="leftcol">
+        <div class="card hero">
+          <div class="sub">Today's collection</div>
+          <div class="big"><span id="collection">₹0</span> <small>of <span id="target">₹4,50,000</span> target</small></div>
+          <div class="progress"><i id="progressFill"></i></div>
+          <div class="kpis"><div class="kpi"><span>Still to collect</span><b id="stillCollect">₹4,50,000</b></div><div class="kpi"><span>Receipts today</span><b>0</b></div><div class="kpi"><span>Next receipt no.</span><b>R-1052</b></div><div class="kpi"><span>Promised for today</span><b>₹0</b></div></div>
+          <div class="suggestion">💡 <b>Suggestion:</b> Four families most likely to pay today owe ₹66,500 in total. Collecting them closes 15% of today's gap. Reminders go out through the school's channel, no numbers shown.</div>
+        </div>
+        <div class="card">
+          <div class="agingtop"><span>Outstanding today: <b>₹1,25,250</b></span><span class="sub">Overdue ₹1,11,250 (89%)</span></div>
+          <div class="agingbar"><span style="width:11.18%"></span><span style="width:29.54%"></span><span style="width:36.73%"></span><span style="width:22.55%"></span></div>
+          <div class="aginglegend"><div class="sub">🔹 Not yet due<b>₹14,000</b>1 student</div><div class="sub">🟠 0–7 days overdue<b>₹37,000</b>2 students</div><div class="sub">🟠 8–30 days overdue<b>₹46,000</b>3 students</div><div class="sub">🔴 Over 30 days overdue<b>₹28,250</b>2 students</div></div>
+        </div>
+        <div class="card">
+          <div class="sectionhead"><div class="seg"><button class="active" data-listmode="collect">Collect first</button><button data-listmode="class">Class view</button></div></div>
+          <div class="sortrow"><span class="sub" id="listDescription">Top students by highest due. Fees only.</span><div class="seg" id="sortButtons"><button class="active" data-sort="due">Highest due</button><button data-sort="days">Longest overdue</button><button data-sort="likely">Likely to pay today</button></div></div>
+          <div class="studentlist" id="studentList"></div>
+          <div id="noStudents" class="empty" style="display:none;padding:12px 2px">No students matched your search.</div>
+        </div>
+        <div class="card"><h3 style="margin-bottom:12px">Needs attention</h3><div class="attentiongrid"><div class="attention"><b>3</b>Bank credits not matched</div><div class="attention"><b>5</b>Payments not yet verified</div><div class="attention"><b>1</b>Backdated entry awaiting Management</div><div class="attention"><b>1</b>Promises missed</div></div><div class="mutednote">Illustrative UI data. Counts must be connected to the approved backend before release.</div></div>
+      </section>
+
+      <aside class="rightcol">
+        <div class="card" id="paymentPanel"><div class="paneltitle">XRecord payment</div><div class="empty" id="paymentHint">Pick a student from the list or use search to preview payment details. Nothing is saved by this HTML preview.</div><div id="paymentFields" style="display:none"><div class="who" id="paymentWho"></div><div class="field"><label for="amount">Amount received (₹)</label><input id="amount" type="number" min="1" placeholder="Enter amount"></div><div class="field"><label>Mode</label><div class="modebuttons" id="modes"><button class="active" data-mode="Cash">Cash</button><button data-mode="UPI">UPI</button><button data-mode="Bank">Bank</button><button data-mode="Cheque">Cheque</button></div></div><div class="field" id="utrField" style="display:none"><label for="utr">UTR / transaction ID</label><input id="utr" placeholder="12-digit UPI/bank reference" maxlength="12"></div><div class="field"><label for="receivedDate">Money received on</label><input id="receivedDate" type="date" value="2026-10-19"></div><div class="field"><label for="allocation">Apply to</label><input id="allocation" readonly></div><button class="copilotbtn wide" id="postPayment">Record payment</button><div class="mutednote">Payment is saved to the school database after confirmation.</div></div></div>
+        <div class="card" id="parentPanel"><div class="paneltitle">📞 Call parent</div><div class="who" id="parentWho">Select a student to view the parent-contact workflow.</div><div class="empty" id="phoneDisplay">Parent phone number remains hidden in this preview.</div><button class="copilotbtn wide" id="startCall" disabled>Start call (school line)</button><div class="field"><label for="callOutcome">Call outcome</label><select id="callOutcome"><option value="promise">Parent will pay (commitment)</option><option value="time">Asked to call later</option><option value="noans">No answer</option><option value="query">Has a fee query</option></select></div><div class="field"><label for="promiseAmount">Promised amount (₹)</label><input id="promiseAmount" type="number" min="0" placeholder="Amount"></div><div class="field"><label for="promiseDate">Promised date</label><input id="promiseDate" type="date" value="2026-10-22"></div><div class="field"><label for="callNote">Note (optional)</label><textarea id="callNote" placeholder="Add a short note..."></textarea></div><button class="copilotbtn wide" id="saveCall">Preview call and commitment</button><div class="mutednote">Demo only — this does not place a call or save a commitment.</div></div>
+        <div class="card"><div class="paneltitle">Send reminder</div><div class="who" id="reminderWho">Select a student to preview a fee reminder.</div><div class="field"><label for="reminderType">Reminder type</label><select id="reminderType"><option>Overdue fee reminder</option><option>Due soon reminder</option><option>Payment commitment follow-up</option></select></div><button class="copilotbtn wide" id="sendReminder">Preview reminder</button><div class="mutednote">No SMS or WhatsApp message is sent by this preview.</div></div>
+      </aside>
+    </main>
+  </div>
+</section>
+<div class="toast" id="toast" role="status" aria-live="polite"></div><div class="previewstamp">UI PREVIEW · SAMPLE DATA ONLY</div>
+<script>
+const $ = id => document.getElementById(id);
+
+let authToken = null;
+let loggedInUser = null;
+let otpStage = false;
+
+let selected = null;
+let sort = 'due';
+let listMode = 'collect';
+let payMode = 'Cash';
+let vis = 'hidden';
+
+/* =========================================================
+   NOTIFICATIONS AND API REQUESTS
+========================================================= */
+
+function notify(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+
+  clearTimeout(window._toastTimer);
+
+  window._toastTimer = setTimeout(() => {
+    t.classList.remove('show');
+  }, 3200);
+}
+
+async function apiRequest(path, options = {}) {
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    ...(authToken
+      ? { Authorization: 'Bearer ' + authToken }
+      : {}),
+    ...(options.headers || {})
+  };
+
+  const response = await fetch(path, {
+    ...options,
+    headers
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    if (response.status === 401 && authToken) {
+      authToken = null;
+      loggedInUser = null;
+      setScreen('login');
+    }
+
+    throw new Error(
+      data.message || 'Request failed. Please try again.'
+    );
+  }
+
+  return data;
+}
+
+/* =========================================================
+   SCREEN NAVIGATION
+========================================================= */
+
+function setScreen(which) {
+  if (which === 'accountant' && !authToken) {
+    $('loginStatus').className = 'status show error';
+    $('loginStatus').textContent =
+      'Please sign in with your registered mobile number first.';
+
+    which = 'login';
+  }
+
+  $('loginScreen').classList.toggle(
+    'active',
+    which === 'login'
+  );
+
+  $('accountantScreen').classList.toggle(
+    'active',
+    which === 'accountant'
+  );
+
+  $('showLogin').classList.toggle(
+    'active',
+    which === 'login'
+  );
+
+  $('showAccountant').classList.toggle(
+    'active',
+    which === 'accountant'
+  );
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+$('showLogin').onclick = () => {
+  if (authToken) {
+    if (confirm('Log out of the accountant session?')) {
+      logout();
+    }
+  } else {
+    setScreen('login');
+  }
+};
+
+$('showAccountant').onclick = () => {
+  setScreen('accountant');
+};
+
+$('previewDashboard').onclick = () => {
+  setScreen('accountant');
+};
+
+/* =========================================================
+   OTP LOGIN
+========================================================= */
+
+function resetLogin() {
+  otpStage = false;
+
+  $('phone').readOnly = false;
+  $('otp').value = '';
+
+  $('otpWrap').style.display = 'none';
+  $('otpActions').style.display = 'none';
+
+  $('submitLogin').textContent = 'Send OTP';
+
+  $('loginHeading').textContent = 'Welcome Back';
+
+  $('loginSubtext').textContent =
+    'Sign in using your registered mobile number.';
+
+  $('loginStatus').className = 'status';
+}
+
+$('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  const phone = $('phone').value.replace(/\D/g, '');
+  const otp = $('otp').value.trim();
+  const status = $('loginStatus');
+  const submit = $('submitLogin');
+
+  if (!/^[6-9]\d{9}$/.test(phone)) {
+    status.className = 'status show error';
+    status.textContent =
+      'Enter a valid 10-digit mobile number.';
+    return;
+  }
+
+  status.className = 'status show info';
+
+  status.textContent = otpStage
+    ? 'Verifying OTP...'
+    : 'Requesting OTP...';
+
+  submit.disabled = true;
+
+  try {
+    if (!otpStage) {
+      // STEP 1: Request OTP from Laravel.
+      await apiRequest('/api/login/send-otp', {
+        method: 'POST',
+        body: JSON.stringify({
+          mobile: phone
+        })
+      });
+
+      otpStage = true;
+
+      $('phone').readOnly = true;
+      $('otpWrap').style.display = 'block';
+      $('otpActions').style.display = 'flex';
+
+      submit.textContent = 'Verify OTP';
+
+      $('loginHeading').textContent =
+        'Verify your mobile number';
+
+      $('loginSubtext').textContent =
+        'Enter the six-digit OTP from your configured delivery method.';
+
+      status.className = 'status show info';
+
+      status.textContent =
+        'OTP requested. For local development, check the Laravel log. SMS delivery is not configured yet.';
+
+    } else {
+      // STEP 2: Validate OTP input.
+      if (!/^\d{6}$/.test(otp)) {
+        throw new Error('Enter the six-digit OTP.');
+      }
+
+      // STEP 3: Verify OTP with Laravel.
+      const data = await apiRequest(
+        '/api/login/verify-otp',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            mobile: phone,
+            otp: otp
+          })
+        }
+      );
+
+      // STEP 4: Store the returned token in memory.
+      authToken = data.token;
+      loggedInUser = data.user;
+
+      status.className = 'status show info';
+      status.textContent =
+        'Login successful. Loading accountant dashboard...';
+
+      // STEP 5: Open the authenticated dashboard.
+      setScreen('accountant');
+
+      // STEP 6: Request dashboard data from Laravel.
+      try {
+        await loadStudents();
+
+        const dashboard = await apiRequest(
+          '/api/accountant/dashboard'
+        );
+
+        console.log(
+          'Authenticated user:',
+          loggedInUser
+        );
+
+        console.log(
+          'Dashboard API response:',
+          dashboard
+        );
+
+        notify(
+          'Signed in successfully. Dashboard API connected.'
+        );
+
+      } catch (dashboardError) {
+        console.error(
+          'Dashboard API error:',
+          dashboardError
+        );
+
+        notify(
+          'Login succeeded, but dashboard API failed: ' +
+          dashboardError.message
+        );
+      }
+    }
+
+  } catch (error) {
+    status.className = 'status show error';
+    status.textContent = error.message;
+
+  } finally {
+    submit.disabled = false;
+  }
+});
+
+// Change mobile number and restart login.
+$('changeNumber').onclick = () => {
+  resetLogin();
+  $('loginStatus').className = 'status';
+};
+
+// Request another OTP.
+$('resendOtp').onclick = async () => {
+  const phone = $('phone').value.replace(/\D/g, '');
+  const status = $('loginStatus');
+
+  status.className = 'status show info';
+  status.textContent = 'Requesting a new OTP...';
+
+  try {
+    await apiRequest('/api/login/send-otp', {
+      method: 'POST',
+      body: JSON.stringify({
+        mobile: phone
+      })
+    });
+
+    $('otp').value = '';
+
+    status.textContent =
+      'New OTP requested. Check the Laravel log in local development.';
+
+  } catch (error) {
+    status.className = 'status show error';
+    status.textContent = error.message;
+  }
+};
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+async function logout() {
+  try {
+    if (authToken) {
+      await apiRequest('/api/logout', {
+        method: 'POST'
+      });
+    }
+
+  } catch (error) {
+    console.error('Logout API error:', error);
+
+  } finally {
+    authToken = null;
+    loggedInUser = null;
+
+    $('phone').value = '';
+
+    resetLogin();
+    setScreen('login');
+
+    notify('Logged out.');
+  }
+}
+
+/* =========================================================
+   SAMPLE STUDENT DATA
+   NOTE: This is preview data, not PostgreSQL data.
+========================================================= */
+
+let students = [];
+
+
+async function loadStudents() {
+  const result = await apiRequest('/api/students?per_page=100');
+
+  const records = Array.isArray(result.data) ? result.data : [];
+
+  students = records.map(student => {
+    const fees = Array.isArray(student.fees) ? student.fees : [];
+    const dates = fees
+      .map(fee => fee.due_date)
+      .filter(Boolean)
+      .sort();
+
+    const dueDate = dates.length ? dates[0] : null;
+    let days = null;
+
+    if (dueDate) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const due = new Date(dueDate + 'T00:00:00');
+      days = Math.floor((today - due) / 86400000);
+    }
+
+    return {
+      dbId: Number(student.id),
+      id: String(student.admission_number || student.id),
+      name: student.name,
+      className: student.class_name,
+      family: student.parent_name || 'Parent details unavailable',
+      due: Number(student.outstanding || 0),
+      dueDate,
+      days,
+      last: 'Payment history unavailable',
+      likely: 0
+    };
+  });
+
+  selected = null;
+  renderStudents();
+
+  console.log('Students loaded from PostgreSQL:', students.length);
+}
+
+/* =========================================================
+   STUDENT LIST
+========================================================= */
+
+function money(n) {
+  return '₹' + Number(n).toLocaleString('en-IN');
+}
+
+function renderStudents() {
+  const q = $('topSearch').value.trim().toLowerCase();
+
+  let rows = students.filter(s =>
+    (s.name + ' ' + s.id + ' ' + s.className)
+      .toLowerCase()
+      .includes(q)
+  );
+
+  if (sort === 'due') {
+    rows.sort((a, b) => b.due - a.due);
+  } else if (sort === 'days') {
+    rows.sort((a, b) => b.days - a.days);
+  } else {
+    rows.sort((a, b) => a.likely - b.likely);
+  }
+
+  $('studentList').innerHTML = '';
+
+  $('noStudents').style.display =
+    rows.length ? 'none' : 'block';
+
+  rows.forEach(s => {
+    const d = document.createElement('article');
+
+    d.className =
+      'student' +
+      (selected?.id === s.id ? ' selected' : '');
+
+    const status = s.days === null
+      ? '<span class="badge">Due date unavailable</span>'
+      : s.days < 0
+        ? `<span class="badge today">Due in ${Math.abs(s.days)} days</span>`
+        : s.days === 0
+          ? '<span class="badge today">Due today</span>'
+          : `<span class="badge">${s.days} days overdue</span>`;
+
+    d.innerHTML = `
+      <div class="studenttop">
+        <div>
+          <div class="studentname">
+            ${s.name}${status}
+          </div>
+          <div class="studentmeta">
+            Class ${s.className} · ${s.id} ·
+            ${s.dueDate
+              ? 'Due date ' + new Date(s.dueDate + 'T12:00:00')
+                  .toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short'
+                  }) + ' · '
+              : ''}${s.last}
+          </div>
+        </div>
+        <div class="due">${money(s.due)}</div>
+      </div>
+
+      <div class="studentactions">
+        <button class="actionbtn primarybtn"
+          data-action="payment"
+          data-id="${s.id}">
+          Record payment
+        </button>
+
+        <button class="actionbtn"
+          data-action="call"
+          data-id="${s.id}">
+          ☎ Call parent
+        </button>
+
+        <button class="actionbtn"
+          data-action="reminder"
+          data-id="${s.id}">
+          Send reminder
+        </button>
+      </div>
+    `;
+
+    $('studentList').appendChild(d);
+  });
+}
+
+function selectStudent(id, action) {
+  selected = students.find(s => s.id === id) || null;
+
+  renderStudents();
+
+  if (!selected) return;
+
+  $('paymentHint').style.display = 'none';
+  $('paymentFields').style.display = 'block';
+
+  $('paymentWho').textContent =
+    `${selected.name} · Class ${selected.className} · Due ${money(selected.due)}`;
+
+  $('amount').value = selected.due;
+
+  $('allocation').value =
+    `${selected.name} (due ${money(selected.due)})`;
+
+  $('parentWho').textContent =
+    `${selected.family} · ${selected.name}, Class ${selected.className} · Due ${money(selected.due)}`;
+
+  $('reminderWho').textContent =
+    `${selected.name} · ${selected.id} · Outstanding ${money(selected.due)}`;
+
+  $('promiseAmount').value = selected.due;
+
+  $('phoneDisplay').textContent =
+    vis === 'visible'
+      ? 'Demo preview: phone numbers are not included in this file.'
+      : 'Parent phone number remains hidden in this preview.';
+
+  if (action === 'call') {
+    $('parentPanel').scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest'
+    });
+  } else if (action === 'payment') {
+    $('paymentPanel').scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest'
+    });
+  } else if (action === 'reminder') {
+    $('sendReminder').scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest'
+    });
+  }
+}
+
+$('studentList').addEventListener('click', e => {
+  const b = e.target.closest('button[data-action]');
+
+  if (b) {
+    selectStudent(b.dataset.id, b.dataset.action);
+  }
+});
+
+$('topSearch').addEventListener('input', renderStudents);
+
+document.querySelectorAll('[data-sort]').forEach(b => {
+  b.onclick = () => {
+    sort = b.dataset.sort;
+
+    document.querySelectorAll('[data-sort]').forEach(x => {
+      x.classList.toggle('active', x === b);
+    });
+
+    renderStudents();
+  };
+});
+
+document.querySelectorAll('[data-listmode]').forEach(b => {
+  b.onclick = () => {
+    listMode = b.dataset.listmode;
+
+    document.querySelectorAll('[data-listmode]').forEach(x => {
+      x.classList.toggle('active', x === b);
+    });
+
+    $('listDescription').textContent =
+      listMode === 'class'
+        ? 'Class view preview. Choose a class in the full application.'
+        : 'Top students by your selected sort. Fees only.';
+
+    renderStudents();
+  };
+});
+
+/* =========================================================
+   PAYMENT FORM — PREVIEW ONLY
+========================================================= */
+
+document.querySelectorAll('[data-mode]').forEach(b => {
+  b.onclick = () => {
+    payMode = b.dataset.mode;
+
+    document.querySelectorAll('[data-mode]').forEach(x => {
+      x.classList.toggle('active', x === b);
+    });
+
+    $('utrField').style.display =
+      payMode === 'Cash' ? 'none' : 'block';
+  };
+});
+
+document.querySelectorAll('[data-vis]').forEach(b => {
+  b.onclick = () => {
+    vis = b.dataset.vis;
+
+    document.querySelectorAll('[data-vis]').forEach(x => {
+      x.classList.toggle('active', x === b);
+    });
+
+    $('phoneDisplay').textContent =
+      vis === 'visible'
+        ? 'Demo preview: phone numbers are not included in this file.'
+        : vis === 'masked'
+          ? 'Parent phone number would be masked in the real application.'
+          : 'Parent phone number remains hidden in this preview.';
+
+    notify('Contact visibility preview changed to ' + vis + '.');
+  };
+});
+
+$('postPayment').onclick = async () => {
+  if (!selected) return notify('Select a student first.');
+  if (!selected.dbId) return notify('Student database ID is missing. Reload students.');
+
+  const amount = Number($('amount').value);
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return notify('Enter a valid payment amount.');
+  }
+  if (amount > Number(selected.due) + 0.0001) {
+    return notify('Payment cannot exceed outstanding balance of ₹' +
+      Number(selected.due).toLocaleString('en-IN') + '.');
+  }
+
+  const reference = $('utr').value.trim();
+  if (payMode !== 'Cash' && !/^\d{12}$/.test(reference)) {
+    return notify('Enter the 12-digit transaction reference for ' + payMode + '.');
+  }
+
+  const receivedAt = $('receivedDate').value;
+  if (!receivedAt) return notify('Choose the date money was received.');
+
+  const method = payMode === 'Bank' ? 'Bank transfer' : payMode;
+  const btn = $('postPayment');
+  btn.disabled = true;
+  btn.textContent = 'Saving payment…';
+
+  try {
+    const result = await apiRequest('/api/payments', {
+      method: 'POST',
+      body: JSON.stringify({
+        student_id: selected.dbId,
+        amount: amount,
+        method: method,
+        reference: reference || null,
+        received_at: receivedAt
+      })
+    });
+
+    const payment = result.data || {};
+    notify('Payment saved successfully. Receipt: ' +
+      (payment.receipt_number || 'created') + '.');
+
+    $('utr').value = '';
+
+    // Reload the real database balances after the successful payment.
+    await loadStudents();
+
+    // Try to show the receipt using the backend's receipt endpoint.
+    if (payment.id) {
+      try {
+        const receiptResult = await apiRequest(
+          '/api/payments/' + payment.id + '/receipt'
+        );
+        const receipt = receiptResult.data || {};
+        const lines = [
+          'Receipt: ' + (receipt.receipt_number || payment.receipt_number || ''),
+          'Student: ' + (receipt.student_name || ''),
+          'Admission no.: ' + (receipt.admission_number || ''),
+          'Amount received: ₹' + Number(receipt.amount || payment.amount || amount)
+            .toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2}),
+          'Method: ' + (receipt.method || method),
+          'Date: ' + (receipt.received_at || receivedAt)
+        ];
+        alert(lines.join('\n'));
+      } catch (receiptError) {
+        notify('Payment saved, but receipt could not be loaded: ' + receiptError.message);
+      }
+    }
+  } catch (error) {
+    notify('Payment was not saved: ' + error.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Record payment';
+  }
+};
+
+$('startCall').onclick = () => {
+  notify('Preview only: no phone call was placed.');
+};
+
+$('saveCall').onclick = () => {
+  notify('Preview only: call outcome was not saved.');
+};
+
+$('sendReminder').onclick = () => {
+  notify('Preview only: no reminder was sent.');
+};
+
+/* =========================================================
+   COPILOT — PREVIEW ONLY
+========================================================= */
+
+function answerFor(q) {
+  const t = q.toLowerCase();
+
+  if (/today.?s collection|collection today|collected today/.test(t)) {
+    return "Today's collection in this preview is ₹0 against a ₹4,50,000 target. This is illustrative data; the live answer must come from the backend.";
+  }
+
+  const s = students.find(x =>
+    t.includes(x.id.toLowerCase()) ||
+    t.includes(x.name.toLowerCase())
+  );
+
+  if (s) {
+    return `${s.name} (${s.id}) has ${money(s.due)} outstanding in this UI preview. Fee due date: ${s.dueDate}; ${
+      s.days > 0
+        ? s.days + ' days overdue'
+        : s.days === 0
+          ? 'due today'
+          : 'due in ' + Math.abs(s.days) + ' days'
+    }. This is illustrative data, not a live backend response.`;
+  }
+
+  if (/overdue|outstanding|balance|due amount|fees/.test(t)) {
+    return 'This preview contains illustrative fee records only. Connect the backend API to calculate an accurate total for this question.';
+  }
+
+  return 'Copilot UI preview is ready, but this standalone HTML has no connection to the AI backend. The live request/response integration remains to be connected.';
+}
+
+$('askCopilot').onclick = () => {
+  const q = $('topSearch').value.trim();
+
+  if (!q) {
+    notify('Type a student name or question first.');
+    $('topSearch').focus();
+    return;
+  }
+
+  const area = $('copilotArea');
+
+  area.classList.add('show');
+
+  $('chatBody').innerHTML = `
+    <div class="chatmsg user">
+      <b>You</b><br>${escapeHtml(q)}
+    </div>
+
+    <div class="chatmsg assistant">
+      <b>Copilot · Preview</b><br>${escapeHtml(answerFor(q))}
+    </div>
+  `;
+
+  $('chatError').textContent = '';
+
+  area.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+};
+
+$('closeCopilot').onclick = () => {
+  $('copilotArea').classList.remove('show');
+  $('chatBody').innerHTML = '';
+  $('chatError').textContent = '';
+};
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c]);
+}
+
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
+
+renderStudents();
+</script>
+</body>
+</html>
