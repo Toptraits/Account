@@ -1,0 +1,41 @@
+services:
+  school-os:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: school-os-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_DATABASE: school_os_restore
+      DB_USERNAME: school_os_user
+    ports:
+      - "8001:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:14
+    container_name: school-os-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: school_os_restore
+      POSTGRES_USER: school_os_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+    volumes:
+      - school_os_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U school_os_user -d school_os_restore"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  school_os_pgdata:

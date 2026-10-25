@@ -1,0 +1,20 @@
+<?php
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
+use App\Models\FeePayment;
+use App\Models\Student;
+use App\Models\PaymentCommitment;
+use App\Models\FeeReminder;
+use Illuminate\Support\Facades\DB;
+class DashboardController extends Controller {
+ public function show(){
+  $today=now()->toDateString();
+  $collection=(float)FeePayment::whereDate('received_at',$today)->where('status','verified')->sum('amount');
+  $students=Student::where('is_active',true)->get();
+  $totalOutstanding=0; $overdue=0;
+  foreach($students as $s){$balance=(float)$s->outstanding;$totalOutstanding+=$balance;$due=(float)$s->fees()->whereDate('due_date','<',$today)->sum('amount')-(float)$s->payments()->where('status','verified')->sum('amount');$overdue+=max(0,$due);}
+  $lastReceipt=FeePayment::where('receipt_number','like','R-%')->orderByDesc('id')->value('receipt_number');
+  $nextNum=FeePayment::max('id')+1;
+  return response()->json(['data'=>['date'=>$today,'today_collection'=>number_format($collection,2,'.',''),'daily_target'=>'450000.00','still_to_collect'=>number_format(max(0,450000-$collection),2,'.',''),'receipts_today'=>FeePayment::whereDate('received_at',$today)->count(),'next_receipt_number'=>'R-'.str_pad((string)(1051+$nextNum),4,'0',STR_PAD_LEFT),'total_outstanding'=>number_format($totalOutstanding,2,'.',''),'overdue_outstanding'=>number_format(min($totalOutstanding,$overdue),2,'.',''),'active_students'=>$students->count(),'commitments_due_today'=>PaymentCommitment::whereDate('promised_date',$today)->where('status','open')->count(),'pending_reminders'=>FeeReminder::where('status','queued')->count(),'attention'=>['unmatched_bank_credits'=>0,'payments_pending_verification'=>FeePayment::where('status','pending')->count(),'backdated_entries_pending'=>0,'missed_promises'=>PaymentCommitment::where('status','missed')->count()]]]);
+ }
+}
