@@ -12,14 +12,17 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN composer install --no-dev --prefer-dist --no-interaction \
-    --optimize-autoloader --no-progress
-
-RUN mkdir -p storage/framework/cache \
+# Create Laravel runtime directories BEFORE Composer runs Laravel scripts.
+RUN mkdir -p \
+    storage/framework/cache/data \
     storage/framework/sessions \
     storage/framework/views \
-    storage/logs bootstrap/cache \
+    storage/logs \
+    bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
+
+RUN composer install --no-dev --prefer-dist --no-interaction \
+    --optimize-autoloader --no-progress
 
 EXPOSE 8000
 

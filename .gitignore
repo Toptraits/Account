@@ -1,4 +1,26 @@
-
 # Local environment files
 .env
 .env.*
+!.env.example
+
+# Composer dependencies
+/vendor/
+
+# Laravel generated cache files
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+
+# Runtime files
+/storage/*.key
+/storage/logs/*
+/storage/framework/cache/*
+!/storage/framework/cache/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+
+# Local backups
+*.before-cache-fix
+*.before-portable-fix
+*.backup_*
