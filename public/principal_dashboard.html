@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toptraits · Principal Dashboard Review</title>
+<style>
+:root{color-scheme:dark;--bg:#0e1420;--card:#172033;--ink:#eaf0fb;--mut:#9aa8bf;--line:#27324a;--pri:#7aa2ff;--prit:#1c2a4d;--ok:#4fd195;--okt:#12301f;--warn:#f2b254;--warnt:#35280f;--bad:#ff8a80;--badt:#3a1a18;--org:#fb923c;--orgt:#3b2412}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select,textarea{font:inherit}button,select{cursor:pointer}
+.layout{display:grid;grid-template-columns:228px minmax(0,1fr);gap:18px;padding:18px;max-width:1800px;margin:auto}
+.sidebar{position:sticky;top:18px;align-self:start;border:1px solid var(--line);background:var(--card);border-radius:15px;padding:14px;display:grid;gap:5px}
+.side-title{padding:5px 9px 10px;color:var(--mut);font-weight:800;font-size:11px;letter-spacing:.11em;text-transform:uppercase}
+.nav-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:42px;text-align:left;padding:9px 10px;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--mut);font-size:13px;font-weight:700;cursor:pointer}
+.nav-btn:hover{background:#111a2a;color:var(--ink)}.nav-btn.active{background:var(--prit);color:var(--pri);border-color:#354b7a}.nav-icon{width:22px;flex:0 0 22px;text-align:center;font-size:16px}
+main{min-width:0;display:grid;align-content:start;gap:16px}
+.topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.brand{font-weight:750;white-space:nowrap}.live{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--okt);color:var(--ok);font-weight:700;white-space:nowrap}
+.search-form{display:flex;align-items:center;gap:8px;flex:1;min-width:min(100%,420px);flex-wrap:wrap}.search-input{flex:1;min-width:180px;width:100%;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--pri);box-shadow:0 0 0 3px #7aa2ff22;outline:none}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:9px 12px;font-size:12px;font-weight:750;cursor:pointer;min-height:40px}.btn:hover{background:var(--prit)}.primary{background:var(--pri);border-color:var(--pri);color:#fff}
+.banner{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(120deg,#1c2a4d,#172033 70%,#172b31)}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:var(--pri)}.banner-title{font-size:25px;font-weight:800;letter-spacing:-.025em;margin-top:4px}.muted{color:var(--mut);font-size:13px}.demo{display:inline-flex;align-items:center;gap:7px;border:1px solid #6a5833;border-radius:999px;padding:6px 10px;background:var(--warnt);color:var(--warn);font-size:12px;font-weight:700}
+.view-title{font-size:24px;font-weight:800;margin:0 0 2px}.view-sub{margin:0;color:var(--mut);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.two{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,1fr);gap:14px}
+.card{border:1px solid var(--line);border-radius:15px;background:var(--card);padding:16px;min-width:0;color:var(--ink)}.label{color:var(--mut);font-size:12px;font-weight:650}.value{font-size:25px;font-weight:800;letter-spacing:-.02em;margin-top:7px}.foot{font-size:12px;color:var(--mut);margin-top:5px}
+.section-title{font-size:16px;font-weight:800;margin:0 0 12px}.mini-list{display:grid;gap:10px}.mini-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:#111a2a}
+.pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:11px;font-weight:800;white-space:nowrap}.ok{background:var(--okt);color:var(--ok)}.warn{background:var(--warnt);color:var(--warn)}.risk{background:var(--badt);color:var(--bad)}.info{background:var(--prit);color:var(--pri)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}.data-table{width:100%;border-collapse:collapse;min-width:700px;color:var(--ink)}.data-table th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);background:#111a2a;padding:12px}.data-table td{padding:12px;border-top:1px solid var(--line);vertical-align:middle;font-size:13px}.data-table tr:hover td{background:#1c2a4d55}
+.input{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:10px 12px;font-size:13px}.field{display:grid;gap:5px;min-width:120px;color:var(--mut);font-size:12px}.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:end}.controls>*{flex:1}
+.progress{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;background:var(--pri);border-radius:999px}
+.bar-row{display:grid;grid-template-columns:70px minmax(100px,1fr) 48px;align-items:center;gap:10px;margin:12px 0;font-size:12px}.name{font-weight:800}.subline{font-size:11px;color:var(--mut);margin-top:3px}
+.answer{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere}.answer.error{border-color:#8c3834;color:var(--bad)}.notice{padding:12px;border:1px solid var(--line);border-radius:10px;background:#111a2a;color:var(--mut);font-size:12px;margin-top:12px}
+.exam-tabs{display:flex;gap:7px;flex-wrap:wrap;padding:7px;border:1px solid var(--line);border-radius:13px;background:#111a2a;margin-bottom:14px}.exam-tab{border:1px solid transparent;border-radius:9px;padding:9px 12px;background:transparent;color:var(--mut);font-size:12px;font-weight:800;cursor:pointer}.exam-tab.active{background:var(--prit);border-color:#354b7a;color:var(--pri)}
+.toast{display:none;padding:11px 13px;border-radius:10px;background:var(--prit);color:#d5e0ff}
+@media(max-width:1050px){.layout{grid-template-columns:205px minmax(0,1fr);gap:12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}
+@media(max-width:780px){.layout{grid-template-columns:1fr;padding:10px}.sidebar{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.side-title{grid-column:1/-1}.nav-btn{font-size:12px}.search-form{min-width:100%}.topbar{align-items:stretch}.brand{width:100%}.banner-title{font-size:21px}}
+@media(max-width:480px){.sidebar,.grid{grid-template-columns:1fr}.side-title{grid-column:auto}.search-input{min-width:100%}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+ <div class="side-title">Principal Workspace</div>
+ <button class="nav-btn active" data-tab="overview"><span class="nav-icon">⌂</span>Home Dashboard</button>
+ <button class="nav-btn" data-tab="approvals"><span class="nav-icon">✓</span>Approvals</button>
+ <button class="nav-btn" data-tab="analytics"><span class="nav-icon">▥</span>School Analytics</button>
+ <button class="nav-btn" data-tab="students"><span class="nav-icon">♙</span>Students &amp; AI signals</button>
+ <button class="nav-btn" data-tab="staff"><span class="nav-icon">♟</span>Staff</button>
+ <button class="nav-btn" data-tab="risk"><span class="nav-icon">!</span>At-Risk &amp; SIS</button>
+ <button class="nav-btn" data-tab="attendance"><span class="nav-icon">◷</span>Attendance</button>
+ <button class="nav-btn" data-tab="marks"><span class="nav-icon">▤</span>Marks</button>
+ <button class="nav-btn" data-tab="examinations"><span class="nav-icon">✎</span>Examinations</button>
+ <button class="nav-btn" data-tab="fees"><span class="nav-icon">₹</span>Fees Overview</button>
+ <button class="nav-btn" data-tab="timetable"><span class="nav-icon">▦</span>Timetable</button>
+ <button class="nav-btn" data-tab="syllabus"><span class="nav-icon">▤</span>Syllabus</button>
+ <button class="nav-btn" data-tab="circulars"><span class="nav-icon">♢</span>Circulars &amp; Alerts</button>
+</aside>
+<main>
+ <header class="topbar">
+  <span class="brand">Toptraits · Principal</span><span class="live">● School overview</span>
+  <div class="search-form"><input id="headerQuery" class="search-input" placeholder="Find a student or ask Copilot…" aria-label="Find a student or ask Copilot"><button class="btn" id="searchBtn">Search students</button><button class="btn primary" id="copilotBtn">✦ Ask Copilot</button></div>
+ </header>
+ <section id="copilotPanel" class="answer" hidden></section>
+ <section class="banner"><div><div class="eyebrow">School leadership overview</div><div class="banner-title">Principal Dashboard</div><p class="muted" style="margin-top:5px">Review student progress, attendance, academics, fee status and today's timetable.</p></div><span class="demo">● DEMO DATA — not connected to the school database</span></section>
+ <section><h1 class="view-title" id="viewTitle">School Overview</h1><p class="view-sub">School leadership workspace · Demo data only</p></section>
+ <div id="content"></div><div id="toast" class="toast" role="status"></div>
+</main>
+</div>
+<script>
+const students=[
+{id:'DEMO0601',name:'Ananya Iyer',grade:'A',class:'6-A',attendance:98,marks:92,signal:'On track',type:'ok',strategy:'Continue current learning routine. Encourage participation in class discussions and maintain consistent attendance.',training:'No additional intervention recorded in this demo.'},
+{id:'DEMO0712',name:'Rohan Das',grade:'B',class:'7-A',attendance:72,marks:67,signal:'Attendance is low',type:'warn',strategy:'Review attendance for the last four weeks, contact the parent through the approved school channel, and agree on a follow-up date.',training:'Suggested support: attendance follow-up and weekly check-in with the class teacher. Demo note only.'},
+{id:'DEMO0822',name:'Nisha Verma',grade:'A',class:'8-A',attendance:89,marks:81,signal:'Late arrivals',type:'warn',strategy:'Check late-arrival records, ask the class teacher to confirm the pattern, and discuss a practical arrival plan with the family.',training:'Suggested support: morning check-in for two weeks and review. Demo note only.'},
+{id:'DEMO0831',name:'Dev Patel',grade:'B',class:'8-B',attendance:83,marks:61,signal:'Academic support needed',type:'risk',strategy:'Review subject-level marks with the teacher, identify learning gaps, and create a short support plan with a review date.',training:'Suggested support: targeted practice in the lowest-scoring subjects and a fortnightly progress review.'},
+{id:'DEMO0914',name:'Meera Shah',grade:'A',class:'9-B',attendance:96,marks:88,signal:'On track',type:'ok',strategy:'Continue current learning routine.',training:'No additional intervention recorded in this demo.'},
+{id:'DEMO0628',name:'Arjun Rao',grade:'C',class:'6-B',attendance:76,marks:58,signal:'Needs follow-up',type:'risk',strategy:'Review attendance and subject-wise marks with the class teacher.',training:'Suggested support: weekly progress check and family follow-up.'}
+];
+const staff=[
+['STF001','Sunita Rao','Class Teacher','Mathematics','8-A','Present','Active'],
+['STF002','Ravi Kumar','Subject Teacher','English','6-A, 6-B, 7-A','Present','Active'],
+['STF003','Meena Sen','Subject Teacher','Science','6-A, 7-A, 8-A','Present','Active'],
+['STF004','Arun Das','Class Teacher','Social Studies','7-B, 9-A, 9-B','On leave','Active'],
+['STF005','Kavya Iyer','Subject Teacher','Computer Science','6-A, 8-B','Present','Active'],
+['STF006','Prakash Patel','Examination Coordinator','Administration','6-9','Present','Active'],
+['STF007','Anita Reddy','Principal','Leadership','All classes','Present','Active'],
+['STF008','Rahul Verma','Lab Assistant','Science Lab','7-9','Present','Active']
+];
+const timetable=[
+['09:00–09:45','6-A','Mathematics','Ms. Rao','Room 06','Completed'],
+['09:50–10:35','6-A','English','Mr. Kumar','Room 06','Completed'],
+['10:50–11:35','6-A','Science','Ms. Sen','Lab 01','In progress'],
+['11:40–12:25','6-A','Social Studies','Mr. Das','Room 06','Upcoming'],
+['13:15–14:00','6-A','Computer Science','Ms. Iyer','Lab 01','Upcoming'],
+['09:00–09:45','6-B','English','Mr. Kumar','Room 07','Completed'],
+['09:50–10:35','6-B','Mathematics','Ms. Rao','Room 07','Completed'],
+['10:50–11:35','6-B','Science','Mr. Das','Lab 01','In progress'],
+['09:00–09:45','7-A','Science','Mr. Das','Lab 02','Completed'],
+['09:50–10:35','7-A','Mathematics','Ms. Sen','Room 08','Completed'],
+['10:50–11:35','7-A','English','Ms. Iyer','Room 08','In progress'],
+['09:00–09:45','7-B','Mathematics','Ms. Rao','Room 09','Completed'],
+['09:50–10:35','7-B','Social Studies','Mr. Patel','Room 09','Completed'],
+['09:00–09:45','8-A','English','Ms. Iyer','Room 12','Completed'],
+['09:50–10:35','8-A','Science','Mr. Das','Lab 03','In progress'],
+['10:50–11:35','8-A','Mathematics','Ms. Sen','Room 12','Upcoming'],
+['09:00–09:45','8-B','Mathematics','Ms. Sen','Room 14','Completed'],
+['09:50–10:35','8-B','English','Ms. Iyer','Room 14','In progress'],
+['09:00–09:45','9-A','Social Studies','Mr. Patel','Room 16','Completed'],
+['09:50–10:35','9-A','Mathematics','Ms. Rao','Room 16','In progress'],
+['09:00–09:45','9-B','Social Studies','Mr. Patel','Room 18','Completed'],
+['09:50–10:35','9-B','Science','Mr. Das','Lab 04','In progress']];
+const syllabus=[
+['6-A','Mathematics','Fractions','Equivalent fractions',65,'In progress','Week 2'],
+['6-A','Science','Living things','Plant and animal cells',80,'In progress','Week 2'],
+['6-A','English','Reading skills','Main idea and supporting details',100,'Completed','Completed'],
+['6-B','Mathematics','Decimals','Comparing decimals',48,'In progress','Week 3'],
+['6-B','Science','Materials','Properties of materials',60,'In progress','Week 3'],
+['7-A','Mathematics','Rational numbers','Operations on rational numbers',72,'In progress','Week 2'],
+['7-A','Science','Heat','Transfer of heat',55,'In progress','Week 3'],
+['7-B','Mathematics','Algebraic expressions','Like and unlike terms',66,'In progress','Week 3'],
+['8-A','Mathematics','Fractions','Word problems',52,'Needs review','Week 2'],
+['8-A','Science','Force and pressure','Pressure in fluids',74,'In progress','Week 2'],
+['8-B','Mathematics','Linear equations','Solving one-variable equations',68,'In progress','Week 3'],
+['9-A','Mathematics','Polynomials','Factorisation',59,'In progress','Week 3'],
+['9-B','Science','Motion','Speed and velocity',82,'In progress','Week 2'],
+['9-B','English','Writing skills','Formal letter writing',100,'Completed','Completed']];
+const exams=[
+['Periodic Assessment 1','6-A','Mathematics','28 Oct 2026','09:00–10:00','40','Sunita Rao','Room 06','Scheduled'],
+['Periodic Assessment 1','6-A','English','29 Oct 2026','09:00–10:00','40','Ravi Kumar','Room 06','Scheduled'],
+['Periodic Assessment 1','6-A','Science','30 Oct 2026','09:00–10:00','40','Meena Sen','Lab 01','Marks entry'],
+['Periodic Assessment 1','6-B','Mathematics','28 Oct 2026','11:00–12:00','40','Sunita Rao','Room 07','Scheduled'],
+['Periodic Assessment 1','7-A','Mathematics','28 Oct 2026','09:00–10:00','40','Sunita Rao','Room 08','Moderation'],
+['Periodic Assessment 1','8-A','Mathematics','28 Oct 2026','09:00–10:00','40','Sunita Rao','Room 12','Marks entry'],
+['Periodic Assessment 1','8-B','Mathematics','28 Oct 2026','11:00–12:00','40','Sunita Rao','Room 14','Scheduled'],
+['Periodic Assessment 1','9-B','Science','29 Oct 2026','09:00–10:00','40','Meena Sen','Lab 04','Published']
+];
+const tabNames={overview:'School Overview',approvals:'Approvals',analytics:'School Analytics',students:'Students & AI signals',staff:'Staff Directory',risk:'At-Risk Students & SIS',attendance:'Attendance Overview',marks:'Academic Marks',examinations:'Examinations & Results',fees:'Fees Overview',timetable:'Timetable',syllabus:'Syllabus Progress',circulars:'Circulars & Alerts'};
+let activeTab='overview', examView='exams', chosenStudent=null, approvalState=['Pending','Pending','Under review'];
+const content=document.getElementById('content');
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function pill(t,type){return `<span class="pill ${type||(/Present|Completed|Published|Paid|On track|Active/.test(t)?'ok':/low|risk|Overdue|Declined/.test(t)?'risk':/Pending|Review|leave|entry|Moderation|Upcoming|Draft/.test(t)?'warn':'info')}">${esc(t)}</span>`}
+function table(heads,rows){return `<div class="table-wrap"><table class="data-table"><thead><tr>${heads.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
+function metric(label,value,foot,bar){return `<div class="card"><div class="label">${label}</div><div class="value">${value}</div><div class="foot">${foot||''}</div>${bar?`<div class="progress"><span style="width:${bar}%"></span></div>`:''}</div>`}
+function section(title,body){return `<section class="card"><h2 class="section-title">${title}</h2>${body}</section>`}
+function pageHead(title,sub='School leadership workspace · Demo data only'){return `<section><h1 class="view-title">${title}</h1><p class="view-sub">${sub}</p></section>`}
+function barRow(label,val){return `<div class="bar-row"><span>${label}</span><div class="progress"><span style="width:${val}%"></span></div><strong>${val}%</strong></div>`}
+function studentRows(list){return list.map(s=>[`<div class="name">${esc(s.name)}</div><div class="subline">${s.id}</div>`,pill(s.grade,s.grade==='A'?'ok':s.grade==='B'?'info':'warn'),s.class,`${s.attendance}%`,`${s.marks}%`,pill(s.signal,s.type),s.type!=='ok'?`<button class="btn" data-strategy="${s.id}">View strategy</button>`:'<span class="muted">No action</span>'])}
+function render(){
+ document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===activeTab));
+ let body='';
+ if(activeTab==='overview'){
+ body=pageHead('School Overview')+`<div class="grid">${metric('Total students','542','Across all demo classes')}${metric('Attendance today','94.6%','513 of 542 students',94.6)}${metric('On track','481','AI signal: demo classification')}${metric('Need attention','27','Review with teachers')}</div>
+ <div class="two">${section('Attendance by class',[barRow('Class 6',97),barRow('Class 7',93),barRow('Class 8',91),barRow('Class 9',96)].join('')+`<p class="muted">Demo summary. Replace with attendance data from the approved backend.</p>`)}${section('Items to review',`<div class="mini-list"><div class="mini-row"><div><b>Attendance follow-up</b><div class="muted">Students below the attendance threshold</div></div>${pill('18','warn')}</div><div class="mini-row"><div><b>Academic support</b><div class="muted">Marks need teacher review</div></div>${pill('9','risk')}</div><div class="mini-row"><div><b>Fee follow-up</b><div class="muted">Demo outstanding accounts</div></div>${pill('14','info')}</div></div><button class="btn primary" style="margin-top:12px" data-go="students">Review student signals</button>`)}</div>
+ <div class="grid">${metric('Academic average','78%','Demo assessment summary')}${metric('Fees collected this month','₹38.2L','Demo total — not live financial data')}${metric('Fees outstanding','₹6.8L','Demo balance')}${metric('Classes scheduled today','36','Sample timetable count')}</div>`;
+ }
+ if(activeTab==='students'||activeTab==='risk'){
+ let list=students.filter(s=>(activeTab!=='risk'||s.type!=='ok'));
+ body=pageHead(activeTab==='risk'?'At-risk student register':'Students & AI signals',activeTab==='risk'?'Students flagged for attendance or academic follow-up.':'Search all demo records; use “View strategy” to inspect a support note.')+
+ `<section class="card"><div class="controls" style="margin-bottom:14px"><label class="field">Search student or admission no<input id="studentSearch" class="input" placeholder="Search name, ID or class"></label><label class="field">Filter by class<select id="classFilter" class="input"><option value="all">All classes</option>${[...new Set(students.map(s=>s.class))].map(c=>`<option>${c}</option>`).join('')}</select></label></div><div id="studentTable">${table(['Student','Grade','Class','Attendance','Marks','AI signal','Action'],studentRows(list))}</div><div id="strategyPanel"></div><p class="muted">Illustrative records only. Review signals with school staff before taking action.</p></section>`;
+ }
+ if(activeTab==='analytics'){
+ body=pageHead('School analytics')+`<div class="grid">${metric('Attendance today','94.6%','Demo figure',94.6)}${metric('Academic average','78%','Demo marks summary',78)}${metric('Fee collection','84.9%','Demo financial metric',84.9)}${metric('Students flagged','3','From demo roster')}</div><div class="two">${section('Attendance trend by class',[barRow('Class 6',97),barRow('Class 7',93),barRow('Class 8',91),barRow('Class 9',96)].join(''))}${section('Academic areas to review',`<div class="mini-list"><div class="mini-row"><span>Mathematics · Grade 8</span>${pill('52% mastery','warn')}</div><div class="mini-row"><span>Science · Grade 7</span>${pill('Review trend','info')}</div><div class="mini-row"><span>English · Grade 9</span>${pill('On track','ok')}</div></div>`)}</div><p class="muted">Analytics values are illustrative demo data only.</p>`;
+ }
+ if(activeTab==='staff'){
+ body=pageHead('Staff Directory','Search the demo staff register by name, employee ID, subject, role or assigned class.')+`<div class="grid">${metric('Staff records','8','Demo records')}${metric('Present today','7','Sample attendance status')}${metric('On leave','1','Sample leave status')}${metric('Active','8','Employment status')}</div><section class="card"><label class="field">Search staff<input id="staffSearch" class="input" placeholder="Search staff, subject or class"></label><div id="staffTable" style="margin-top:12px">${table(['Employee ID','Name','Designation','Department','Classes','Status'],staff.map(s=>[s[0],s[1],s[2],s[3],s[4],pill(s[5])]))}</div></section>`;
+ }
+ if(activeTab==='attendance'){
+ body=pageHead('Attendance Overview')+`<div class="grid">${metric('Present','513','Sample count')}${metric('Absent','21','Sample count')}${metric('Late arrivals','8','Sample count')}${metric('Attendance rate','94.6%','Demo rate',94.6)}</div>${section('Attendance by class',table(['Class','Strength','Present','Absent','Rate','Status'],[['6-A','40','39','1','97.5%',pill('On track','ok')],['7-A','38','35','3','92.1%',pill('Review','warn')],['8-A','42','38','4','90.5%',pill('Review','warn')],['9-B','36','34','2','94.4%',pill('On track','ok')]]))}<p class="muted">Attendance figures are sample data and are not loaded from a school system.</p>`;
+ }
+ if(activeTab==='marks'){
+ body=pageHead('Academic Performance')+`<div class="grid">${metric('Average marks','78%','Demo average')}${metric('Above 80%','318','Sample count')}${metric('Needs support','29','Sample count')}${metric('Assessments entered','91%','Demo progress',91)}</div>${section('Subject performance',table(['Subject','Average marks','Students needing support','Status'],[['Mathematics','76%','12',pill('Review','warn')],['Science','78%','8',pill('On track','ok')],['English','82%','4',pill('On track','ok')],['Social Studies','75%','5',pill('Review','warn')]]))}`;
+ }
+ if(activeTab==='approvals'){
+ body=pageHead('Approvals','Review demo requests. These actions do not update a real system.')+`<div class="grid">${metric('Pending requests','2','Awaiting review')}${metric('Under review','1','Demo count')}${metric('Approved this week','12','Demo count')}${metric('Declined','0','Demo count')}</div>${section('Approval queue',table(['Request ID','Request','Requested by','Submitted','Status','Action'],[['APR-104','Leave request','Ms. Kavya Iyer','Today',pill(approvalState[0]),`<button class="btn" data-approval="0" data-state="Approved">Approve</button> <button class="btn" data-approval="0" data-state="Declined">Decline</button>`],['APR-105','Purchase request','Science Department','Yesterday',pill(approvalState[1]),`<button class="btn" data-approval="1" data-state="Approved">Approve</button> <button class="btn" data-approval="1" data-state="Declined">Decline</button>`],['APR-106','Student transfer','Rohan Das · Grade 10','Yesterday',pill(approvalState[2]),`<button class="btn" data-approval="2" data-state="Approved">Approve</button> <button class="btn" data-approval="2" data-state="Declined">Decline</button>`]]))}`;
+ }
+ if(activeTab==='fees'){
+ body=pageHead('Fee Overview')+`<div class="grid">${metric('Expected this month','₹45.0L','Demo expected amount')}${metric('Collected','₹38.2L','Demo collection')}${metric('Outstanding','₹6.8L','Demo balance')}${metric('Collection rate','84.9%','Demo metric',84.9)}</div>${section('Monthly collection progress',`<div style="display:flex;justify-content:space-between;gap:12px"><b>Fee collection</b><b>84.9%</b></div><div class="progress"><span style="width:84.9%"></span></div><p class="muted">Demo figures only. Financial actions and real fee records are not connected.</p>`)}${section('Fee follow-up examples',table(['Fee category','Expected','Collected','Outstanding','Status'],[['Tuition fees','₹32.0L','₹28.4L','₹3.6L',pill('In progress','info')],['Transport','₹7.0L','₹5.8L','₹1.2L',pill('Review','warn')],['Activities','₹6.0L','₹4.0L','₹2.0L',pill('Review','warn')]]))}`;
+ }
+ if(activeTab==='timetable'){
+ body=pageHead('Timetable','Choose a class and section to view its demo schedule.')+`<section class="card"><div class="controls"><label class="field">Class<select id="timeClass" class="input">${['6','7','8','9'].map(c=>`<option>${c}</option>`).join('')}</select></label><label class="field">Section<select id="timeSection" class="input"><option>A</option><option>B</option></select></label></div><p id="selectedClass" class="muted" style="margin:12px 0">Selected class: 6-A</p><div id="timeTable">${table(['Time','Class','Subject','Teacher','Room','Status'],timetable.filter(t=>t[1]==='6-A').map(t=>[t[0],t[1],t[2],t[3],t[4],pill(t[5])]))}</div></section>`;
+ }
+ if(activeTab==='syllabus'){
+ body=pageHead('Syllabus Progress','Choose a class to review subject coverage, current topics and targets.')+`<section class="card"><label class="field">Class and section<select id="syllabusClass" class="input">${[...new Set(syllabus.map(s=>s[0]))].map(c=>`<option>${c}</option>`).join('')}</select></label><div id="syllabusTable" style="margin-top:12px">${table(['Class','Subject','Chapter','Current topic','Completion','Status','Target'],syllabus.filter(s=>s[0]==='6-A').map(s=>[s[0],s[1],s[2],s[3],`${s[4]}%`,pill(s[5]),s[6]]))}</div></section>`;
+ }
+ if(activeTab==='examinations'){
+ body=pageHead('Examinations & Results','Review assessment plans, exam schedule, marks and publication status.')+`<div class="grid">${metric('Exam plans','3','Demo plans')}${metric('Papers scheduled','8','Sample schedule')}${metric('Marks entry','2','Sample status')}${metric('Published','1','Sample status')}</div><div class="exam-tabs">${[['exams','Exam plans'],['schedule','Exam schedule'],['marks','Marks entry'],['results','Results'],['grade-scale','Grade scale']].map(([k,n])=>`<button class="exam-tab ${examView===k?'active':''}" data-examview="${k}">${n}</button>`).join('')}</div><div id="examContent">${examContent()}</div>`;
+ }
+ if(activeTab==='circulars'){
+ body=pageHead('Circulars & Alerts')+section('Recent circulars',`<div class="mini-list"><div class="mini-row"><div><b>Parent-teacher meeting reminder</b><div class="muted">Grades 6–9 · Draft for review · Updated today</div></div>${pill('Draft','warn')}</div><div class="mini-row"><div><b>Term assessment schedule</b><div class="muted">All classes · Sample circular</div></div>${pill('Scheduled','info')}</div><div class="mini-row"><div><b>Attendance follow-up notice</b><div class="muted">Restricted to relevant school staff</div></div>${pill('Needs review','risk')}</div></div>`)+`<div class="grid">${metric('High priority','3','Sample alerts')}${metric('Awaiting approval','2','Sample alerts')}${metric('Scheduled','5','Sample alerts')}${metric('Sent today','0','Sample alerts')}</div>${section('Draft a circular',`<label class="field">Title<input id="noticeTitle" class="input" placeholder="Circular title"></label><label class="field" style="margin-top:10px">Message<textarea id="noticeBody" class="input" rows="3" placeholder="Write your notice..."></textarea></label><label class="field" style="margin-top:10px">Audience<select id="noticeAudience" class="input"><option>All school</option><option>Students</option><option>Guardians</option><option>Teachers</option></select></label><button class="btn primary" id="saveNotice" style="margin-top:10px">Save demo draft</button><p class="muted" id="noticeResult"></p>`) }<p class="muted">Circular creation and delivery are not connected in this demo.</p>`;
+ }
+ content.innerHTML=body;
+ attachPageHandlers();
+}
+function examContent(){
+ if(examView==='grade-scale')return section('Demo grade scale',`<div class="grid">${[['A','90–100%'],['B','80–89%'],['C','70–79%'],['D','Below 70%']].map(x=>`<div class="card"><div class="label">Grade</div><div class="value">${x[0]}</div><div class="foot">${x[1]}</div></div>`).join('')}</div><p class="muted">Illustrative only. Confirm the official grading policy with school management.</p>`);
+ let rows=exams;
+ if(examView==='schedule')return section('Exam schedule',`<div class="controls"><label class="field">Class<select id="examClass" class="input">${[...new Set(exams.map(e=>e[1]))].map(c=>`<option>${c}</option>`).join('')}</select></label><label class="field">Exam<select id="examName" class="input">${[...new Set(exams.map(e=>e[0]))].map(c=>`<option>${c}</option>`).join('')}</select></label></div><div id="examTable" style="margin-top:12px">${table(['Exam','Class','Subject','Date','Time','Max marks','Teacher','Room','Status'],rows.map(e=>e.map((v,i)=>i===8?pill(v):v)))}</div>`);
+ if(examView==='marks')rows=rows.filter(e=>e[8]==='Marks entry'||e[8]==='Moderation');
+ if(examView==='results')rows=rows.filter(e=>e[8]==='Published');
+ return section(examView==='marks'?'Marks entry queue':examView==='results'?'Published results':'Exam plans',table(['Exam','Class','Subject','Date','Time','Max marks','Teacher','Room','Status','Action'],rows.map((e,i)=>[...e.slice(0,8),pill(e[8]),`<button class="btn" data-exam-open="${i}">View schedule</button>`])))+`<button class="btn primary" id="newExam" style="margin-top:12px">+ New exam plan</button><p class="muted">Demo preview only: exam creation and publishing are not connected to the school database.</p>`;
+}
+function attachPageHandlers(){
+ if(activeTab==='students'||activeTab==='risk'){
+ const filter=()=>{const q=(document.getElementById('studentSearch').value||'').toLowerCase(),cl=document.getElementById('classFilter').value;const list=students.filter(s=>(activeTab!=='risk'||s.type!=='ok')&&(cl==='all'||s.class===cl)&&`${s.name} ${s.id} ${s.class} ${s.signal}`.toLowerCase().includes(q));document.getElementById('studentTable').innerHTML=table(['Student','Grade','Class','Attendance','Marks','AI signal','Action'],studentRows(list));bindStrategies();};
+ document.getElementById('studentSearch').addEventListener('input',filter);document.getElementById('classFilter').addEventListener('change',filter);bindStrategies();
+ }
+ if(activeTab==='staff')document.getElementById('staffSearch').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.getElementById('staffTable').innerHTML=table(['Employee ID','Name','Designation','Department','Classes','Status'],staff.filter(s=>s.join(' ').toLowerCase().includes(q)).map(s=>[s[0],s[1],s[2],s[3],s[4],pill(s[5])]));});
+ if(activeTab==='timetable'){
+ const update=()=>{const cls=document.getElementById('timeClass').value+'-'+document.getElementById('timeSection').value;document.getElementById('selectedClass').textContent='Selected class: '+cls;document.getElementById('timeTable').innerHTML=table(['Time','Class','Subject','Teacher','Room','Status'],timetable.filter(t=>t[1]===cls).map(t=>[t[0],t[1],t[2],t[3],t[4],pill(t[5])]));};document.getElementById('timeClass').addEventListener('change',update);document.getElementById('timeSection').addEventListener('change',update);
+ }
+ if(activeTab==='syllabus')document.getElementById('syllabusClass').addEventListener('change',e=>{document.getElementById('syllabusTable').innerHTML=table(['Class','Subject','Chapter','Current topic','Completion','Status','Target'],syllabus.filter(s=>s[0]===e.target.value).map(s=>[s[0],s[1],s[2],s[3],`${s[4]}%`,pill(s[5]),s[6]]));});
+ if(activeTab==='examinations'){
+ document.querySelectorAll('[data-examview]').forEach(b=>b.addEventListener('click',()=>{examView=b.dataset.examview;render();}));
+ const ec=document.getElementById('examClass');if(ec)ec.addEventListener('change',()=>{const f=exams.filter(e=>e[1]===ec.value&&e[0]===document.getElementById('examName').value);document.getElementById('examTable').innerHTML=table(['Exam','Class','Subject','Date','Time','Max marks','Teacher','Room','Status'],f.map(e=>e.map((v,i)=>i===8?pill(v):v)));});
+ const en=document.getElementById('examName');if(en)en.addEventListener('change',()=>{const f=exams.filter(e=>e[1]===document.getElementById('examClass').value&&e[0]===en.value);document.getElementById('examTable').innerHTML=table(['Exam','Class','Subject','Date','Time','Max marks','Teacher','Room','Status'],f.map(e=>e.map((v,i)=>i===8?pill(v):v)));});
+ document.getElementById('newExam')?.addEventListener('click',()=>showToast('Demo preview only: no exam plan has been saved.'));
+ }
+ if(activeTab==='circulars')document.getElementById('saveNotice').addEventListener('click',()=>{const title=document.getElementById('noticeTitle').value.trim(),body=document.getElementById('noticeBody').value.trim(),aud=document.getElementById('noticeAudience').value;document.getElementById('noticeResult').textContent=title&&body?`Draft preview: ${title} · Audience: ${aud}. No circular has been sent.`:'Enter a title and message to preview the draft.';});
+ document.querySelectorAll('[data-approval]').forEach(b=>b.addEventListener('click',()=>{approvalState[Number(b.dataset.approval)]=b.dataset.state;render();showToast('Updated in this local review only; no real approval was changed.');}));
+ document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+}
+function bindStrategies(){document.querySelectorAll('[data-strategy]').forEach(b=>b.addEventListener('click',()=>{const s=students.find(x=>x.id===b.dataset.strategy);chosenStudent=s.id;document.getElementById('strategyPanel').innerHTML=`<section class="card" style="margin-top:12px;border-color:var(--pri)"><div class="eyebrow">Support strategy · demo note</div><h3>${esc(s.name)} — ${esc(s.signal)}</h3><p><b>Suggested strategy:</b> ${esc(s.strategy)}</p><p><b>Training / support given:</b> ${esc(s.training)}</p><p class="muted">Illustrative notes only; no real intervention has been recorded.</p><button class="btn" id="closeStrategy">Close</button></section>`;document.getElementById('closeStrategy').addEventListener('click',()=>document.getElementById('strategyPanel').innerHTML='');}));}
+function go(tab){activeTab=tab;render();window.scrollTo({top:0,behavior:'smooth'});}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';}
+document.querySelector('.sidebar').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)go(b.dataset.tab);});
+document.getElementById('searchBtn').addEventListener('click',()=>{const q=document.getElementById('headerQuery').value.trim();go('students');const input=document.getElementById('studentSearch');if(input){input.value=q;input.dispatchEvent(new Event('input'));}if(!q)showToast('Type a student name or ID to filter the sample student list.');});
+document.getElementById('copilotBtn').addEventListener('click',()=>{const q=document.getElementById('headerQuery').value.trim();const p=document.getElementById('copilotPanel');p.hidden=false;p.textContent=q?`Demo Copilot: "${q}"\n\nThis standalone HTML review file does not connect to your Laravel Copilot API. In the actual Filament page, Copilot may answer using the configured backend.`:'Type a question first. This standalone HTML file does not connect to the Copilot API.';});
+render();
+</script>
+</body>
+</html>

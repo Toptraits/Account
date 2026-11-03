@@ -35,6 +35,19 @@
   background: #394163;
 }
 
+
+.passkey-management{max-width:1320px;margin:14px auto 0;padding:16px 20px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.passkey-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.passkey-heading h3{margin:0;font-size:16px}
+.passkey-heading p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.passkey-list{display:grid;gap:9px;margin-top:14px}
+.passkey-device{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;border:1px solid #2b3953;border-radius:12px;background:#0e1727}
+.passkey-device-name{font-weight:750}
+.passkey-device-meta{font-size:12px;color:#a8bad5;margin-top:5px;line-height:1.5}
+.passkey-status{font-size:12px;color:#a8bad5;margin-top:10px}
+.passkey-remove{border:1px solid #8d4545;background:#321d27;color:#ffd6d6;border-radius:9px;padding:8px 11px;font-weight:700}
+@media(max-width:700px){.passkey-management{margin:10px 12px;padding:14px}.passkey-device{align-items:flex-start;flex-direction:column}}
+
 </style>
 </head>
 <body>
@@ -42,7 +55,7 @@
   <div class="brand"><em>✦</em> Toptraits <span style="font-weight:500;color:#a8bad7">School OS</span></div>
   <div class="navright" role="navigation" aria-label="Preview screens">
     <button class="navbtn active" id="showLogin">Main Login</button>
-    <button class="navbtn" id="showAccountant">Accountant Dashboard</button>
+    
   </div>
 </header>
 <div class="hintbar">School OS · Secure email OTP login</div>
@@ -67,10 +80,19 @@
           <label class="fieldlabel" for="phone">Email address<span style="color:#ef4444">*</span></label>
           <div class="phonebox"><input id="phone" type="email" inputmode="email" autocomplete="email" maxlength="254" placeholder="Enter your registered email address" required></div>
           <div id="otpWrap" style="display:none;margin-top:20px"><label class="fieldlabel" for="otp">Enter OTP<span style="color:#ef4444">*</span></label><input class="plaininput" id="otp" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="Enter 6-digit OTP"></div>
+          <label id="trustDeviceWrap" style="display:none;margin:14px 0;align-items:center;gap:9px;font-size:14px">
+            <input id="trustDevice" type="checkbox">
+            Trust this device for 30 days
+          </label>
           <button class="primary" type="submit" id="submitLogin">Send OTP</button>
+          <button class="secondary" type="button" id="passkeyLogin"
+            style="width:100%;margin-top:10px">
+            Sign in with Passkey
+          </button>
           <div id="loginStatus" class="status info"></div>
           <div id="otpActions" class="otp-actions" style="display:none"><button class="secondary" type="button" id="changeNumber">Use another email</button><button class="secondary" type="button" id="resendOtp">Resend OTP</button></div>
-          <div class="helptext">Don't have access? Contact your school administrator.<br><span style="display:block;margin-top:8px">A verification code will be sent to your registered email address.</span></div>
+          
+<div class="helptext">Don't have access? Contact your school administrator.<br><span style="display:block;margin-top:8px">A verification code will be sent to your registered email address.</span></div>
           
         </form>
       </section>
@@ -175,6 +197,27 @@
       <div class="meta" id="feesAsOn">Fees as on</div>
       <div class="seg" id="visibility"><button class="active" data-vis="hidden">Numbers hidden</button><button data-vis="masked">Masked</button><button data-vis="visible">Visible</button></div>
     </header>
+
+
+    <section class="passkey-management" id="myPasskeysPanel">
+      <div class="passkey-heading">
+        <div>
+          <h3>My Passkeys</h3>
+          <p>Manage devices that can sign in to your School OS account.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" class="actionbtn" id="registerAccountantPasskey"
+            onclick="window.schoolOsRegisterPasskey && window.schoolOsRegisterPasskey()">
+            Register Passkey
+          </button>
+          <button type="button" class="actionbtn" id="refreshPasskeys">Refresh</button>
+        </div>
+      </div>
+      <div id="passkeyList" class="passkey-list" aria-live="polite">
+        <p class="empty">Sign in to view your registered devices.</p>
+      </div>
+      <div id="passkeyStatus" class="passkey-status" role="status" aria-live="polite"></div>
+    </section>
 
     <div class="copilot-area" id="copilotArea"><div class="copilotbox"><div class="copilothead"><span>✦ Ask the AI accountant</span><button class="closebtn" id="closeCopilot" aria-label="Close Copilot response">×</button></div><div class="chatbody" id="chatBody"></div><div class="chaterror" id="chatError"></div></div></div>
 
@@ -338,9 +381,11 @@ async function apiRequest(path, options = {}) {
       setScreen('login');
     }
 
-    throw new Error(
+    const error = new Error(
       data.message || 'Request failed. Please try again.'
     );
+    error.status = response.status;
+    throw error;
   }
 
   return data;
@@ -374,11 +419,6 @@ function setScreen(which) {
     which === 'login'
   );
 
-  $('showAccountant').classList.toggle(
-    'active',
-    which === 'accountant'
-  );
-
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
@@ -395,10 +435,6 @@ $('showLogin').onclick = () => {
   }
 };
 
-$('showAccountant').onclick = () => {
-  setScreen('accountant');
-};
-
 /* =========================================================
    OTP LOGIN
 ========================================================= */
@@ -411,6 +447,8 @@ function resetLogin() {
 
   $('otpWrap').style.display = 'none';
   $('otpActions').style.display = 'none';
+  $('trustDeviceWrap').style.display = 'none';
+  $('trustDevice').checked = false;
 
   $('submitLogin').textContent = 'Send OTP';
 
@@ -420,6 +458,90 @@ function resetLogin() {
     'Sign in using your registered email address.';
 
   $('loginStatus').className = 'status';
+}
+
+
+async function completeLogin(data, status) {
+  // Establish the browser session for passkey registration.
+  window.schoolOsPasskeySessionReady = false;
+
+  if (data.passkey_bridge_ticket) {
+    try {
+      const csrfResponse = await fetch('/passkeys/bridge-csrf', {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!csrfResponse.ok) {
+        throw new Error('Could not initialize the secure browser session.');
+      }
+
+      const csrfData = await csrfResponse.json();
+
+      const bridgeResponse = await fetch('/passkeys/bridge-session', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfData.csrf_token
+        },
+        body: JSON.stringify({
+          ticket: data.passkey_bridge_ticket
+        })
+      });
+
+      const bridgeData = await bridgeResponse.json();
+
+      if (!bridgeResponse.ok) {
+        throw new Error(
+          bridgeData.message || 'Could not establish the browser session.'
+        );
+      }
+
+      window.schoolOsPasskeySessionReady = true;
+      window.dispatchEvent(new Event('schoolos:passkey-session-ready'));
+    } catch (bridgeError) {
+      console.warn('Passkey session bridge unavailable:', bridgeError);
+      notify('Login succeeded. Passkey registration is not available yet.');
+    }
+  }
+
+  authToken = data.token;
+  loggedInUser = data.user;
+
+  const userRole = String(loggedInUser?.role || '').toLowerCase();
+
+  if (['admin', 'principal', 'teacher', 'class_teacher'].includes(userRole)) {
+    sessionStorage.setItem('schoolOsToken', authToken);
+    sessionStorage.setItem('schoolOsUser', JSON.stringify(loggedInUser));
+
+    window.location.href = userRole === 'admin'
+      ? '/admin/admin-dashboard'
+      : userRole === 'principal'
+        ? '/admin/principal-dashboard'
+        : '/admin/teacher-dashboard';
+    return;
+  }
+
+  status.className = 'status show info';
+  status.textContent = 'Login successful. Loading accountant dashboard...';
+
+  setScreen('accountant');
+
+  try {
+    await loadStudents();
+    await loadDashboard();
+    await loadMyPasskeys();
+    notify('Signed in successfully. Dashboard API connected.');
+  } catch (dashboardError) {
+    console.error('Dashboard API error:', dashboardError);
+    notify(
+      'Login succeeded, but dashboard API failed: ' +
+      dashboardError.message
+    );
+  }
 }
 
 $('loginForm').addEventListener('submit', async e => {
@@ -447,7 +569,30 @@ $('loginForm').addEventListener('submit', async e => {
 
   try {
     if (!otpStage) {
-      // STEP 1: Request OTP from Laravel.
+      // First try the trusted device cookie.
+      status.textContent = 'Checking this trusted device...';
+
+      try {
+        const trustedData = await apiRequest(
+          '/api/login/trusted-device',
+          {
+            method: 'POST',
+            body: JSON.stringify({ email: phone })
+          }
+        );
+
+        await completeLogin(trustedData, status);
+        return;
+      } catch (trustedError) {
+        if (trustedError.status !== 401) {
+          throw trustedError;
+        }
+
+        console.log('Trusted device unavailable; falling back to OTP.');
+      }
+
+      // No valid trusted device: request OTP from Laravel.
+      status.textContent = 'Requesting OTP...';
       await apiRequest('/api/login/send-otp', {
         method: 'POST',
         body: JSON.stringify({
@@ -460,6 +605,7 @@ $('loginForm').addEventListener('submit', async e => {
       $('phone').readOnly = true;
       $('otpWrap').style.display = 'block';
       $('otpActions').style.display = 'flex';
+      $('trustDeviceWrap').style.display = 'flex';
 
       submit.textContent = 'Verify OTP';
 
@@ -487,48 +633,13 @@ $('loginForm').addEventListener('submit', async e => {
           method: 'POST',
           body: JSON.stringify({
             email: phone,
-            otp: otp
+            otp: otp,
+            trust_device: $('trustDevice').checked
           })
         }
       );
 
-      // STEP 4: Store the returned token in memory.
-      authToken = data.token;
-      loggedInUser = data.user;
-
-      status.className = 'status show info';
-      status.textContent =
-        'Login successful. Loading accountant dashboard...';
-
-      // STEP 5: Open the authenticated dashboard.
-      setScreen('accountant');
-
-      // STEP 6: Request dashboard data from Laravel.
-      try {
-        await loadStudents();
-
-        console.log(
-          'Authenticated user:',
-          loggedInUser
-        );
-
-        await loadDashboard();
-
-        notify(
-          'Signed in successfully. Dashboard API connected.'
-        );
-
-      } catch (dashboardError) {
-        console.error(
-          'Dashboard API error:',
-          dashboardError
-        );
-
-        notify(
-          'Login succeeded, but dashboard API failed: ' +
-          dashboardError.message
-        );
-      }
+      await completeLogin(data, status);
     }
 
   } catch (error) {
@@ -1212,17 +1323,6 @@ function showScreen(screenId, navId) {
 }
 
 $('showLogin').addEventListener('click', () => showScreen('loginScreen', 'showLogin'));
-$('showAccountant').addEventListener('click', async () => {
-  showScreen('accountantScreen', 'showAccountant');
-  if (authToken) {
-    try {
-      await loadStudents();
-      await loadDashboard();
-    } catch (e) {
-      console.error('Could not refresh dashboard:', e);
-    }
-  }
-});
 $('addStudentFromList').addEventListener('click', () => {
   if (!authToken) {
     notify('Please log in before adding a student.');
@@ -1232,14 +1332,17 @@ $('addStudentFromList').addEventListener('click', () => {
   showScreen('addStudentScreen', 'showAddStudent');
 });
 
-$('showAddStudent').addEventListener('click', () => {
-  if (!authToken) {
-    notify('Please log in before adding a student.');
-    showScreen('loginScreen', 'showLogin');
-    return;
-  }
-  showScreen('addStudentScreen', 'showAddStudent');
-});
+const showAddStudentButton = $('showAddStudent');
+if (showAddStudentButton) {
+  showAddStudentButton.addEventListener('click', () => {
+    if (!authToken) {
+      notify('Please log in before adding a student.');
+      showScreen('loginScreen', 'showLogin');
+      return;
+    }
+    showScreen('addStudentScreen', 'showAddStudent');
+  });
+}
 $('backToAccountant').addEventListener('click', async () => {
   showScreen('accountantScreen', 'showAccountant');
   if (authToken) {
@@ -1313,6 +1416,131 @@ $('addStudentForm').addEventListener('submit', async event => {
 });
 
 
+
+/* =========================================================
+   PASSKEY DEVICE MANAGEMENT
+========================================================= */
+
+async function loadMyPasskeys() {
+  const list = document.getElementById('passkeyList');
+  const status = document.getElementById('passkeyStatus');
+  if (!list || !status) return;
+
+  list.replaceChildren();
+  const loading = document.createElement('p');
+  loading.className = 'empty';
+  loading.textContent = 'Loading registered devices...';
+  list.appendChild(loading);
+  status.textContent = '';
+
+  try {
+    const response = await fetch('/user/passkeys', {
+      method: 'GET',
+      credentials: 'same-origin',
+      cache: 'no-store',
+      headers: { Accept: 'application/json' }
+    });
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(data.message || `Could not load devices (HTTP ${response.status}).`);
+    }
+
+    list.replaceChildren();
+
+    if (!Array.isArray(data.passkeys) || data.passkeys.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'empty';
+      empty.textContent = 'No passkeys are registered for this account.';
+      list.appendChild(empty);
+      return;
+    }
+
+    data.passkeys.forEach(passkey => {
+      const row = document.createElement('div');
+      row.className = 'passkey-device';
+
+      const details = document.createElement('div');
+      const name = document.createElement('div');
+      name.className = 'passkey-device-name';
+      name.textContent = passkey.name || 'Unnamed device';
+
+      const meta = document.createElement('div');
+      meta.className = 'passkey-device-meta';
+      const created = passkey.created_at
+        ? new Date(passkey.created_at).toLocaleString()
+        : 'Unknown';
+      const lastUsed = passkey.last_used_at
+        ? new Date(passkey.last_used_at).toLocaleString()
+        : 'Never recorded';
+      meta.textContent = `Added: ${created} · Last used: ${lastUsed}`;
+
+      details.append(name, meta);
+
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'passkey-remove';
+      remove.textContent = 'Remove';
+      remove.addEventListener('click', () => removeMyPasskey(passkey.id, passkey.name));
+
+      row.append(details, remove);
+      list.appendChild(row);
+    });
+  } catch (error) {
+    list.replaceChildren();
+    const message = document.createElement('p');
+    message.className = 'empty';
+    message.textContent = error.message;
+    list.appendChild(message);
+    status.textContent = 'If your session has expired, sign in again and refresh this panel.';
+  }
+}
+
+async function removeMyPasskey(id, name) {
+  if (!Number.isInteger(Number(id)) || Number(id) < 1) {
+    notify('Invalid passkey identifier.');
+    return;
+  }
+
+  if (!confirm(`Remove the passkey "${name || 'Unnamed device'}"? This device will no longer be able to sign in with that passkey.`)) {
+    return;
+  }
+
+  try {
+    const csrfResponse = await fetch('/passkeys/bridge-csrf', {
+      credentials: 'same-origin',
+      headers: { Accept: 'application/json' },
+      cache: 'no-store'
+    });
+    const csrfData = await csrfResponse.json().catch(() => ({}));
+
+    if (!csrfResponse.ok || !csrfData.csrf_token) {
+      throw new Error('Could not obtain a security token. Please sign in again.');
+    }
+
+    const response = await fetch(`/user/passkeys/${encodeURIComponent(id)}`, {
+      method: 'DELETE',
+      credentials: 'same-origin',
+      headers: {
+        Accept: 'application/json',
+        'X-CSRF-TOKEN': csrfData.csrf_token
+      }
+    });
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(result.message || `Could not remove passkey (HTTP ${response.status}).`);
+    }
+
+    notify('Passkey removed successfully.');
+    await loadMyPasskeys();
+  } catch (error) {
+    notify(error.message);
+  }
+}
+
+document.getElementById('refreshPasskeys')?.addEventListener('click', loadMyPasskeys);
+
 /* =========================================================
    INITIAL RENDER
 ========================================================= */
@@ -1369,6 +1597,47 @@ document.querySelectorAll('input[type="date"]').forEach(function(input) {
   });
 });
 </script>
+
+
+<script>
+window.addEventListener('schoolos:passkey-login', async function (event) {
+  const data = event.detail;
+  if (!data || !data.token || !data.user) return;
+
+  // Reuse the same in-memory authentication variables as OTP login.
+  authToken = data.token;
+  loggedInUser = data.user;
+
+  const userRole = String(loggedInUser.role || '').toLowerCase();
+
+  if (['admin', 'principal', 'teacher', 'class_teacher'].includes(userRole)) {
+    sessionStorage.setItem('schoolOsToken', authToken);
+    sessionStorage.setItem('schoolOsUser', JSON.stringify(loggedInUser));
+    window.location.href = userRole === 'admin'
+      ? '/admin/admin-dashboard'
+      : userRole === 'principal'
+        ? '/admin/principal-dashboard'
+        : '/admin/teacher-dashboard';
+    return;
+  }
+
+  const status = document.getElementById('loginStatus');
+  status.className = 'status show info';
+  status.textContent = 'Passkey login successful. Loading dashboard...';
+
+  try {
+    setScreen('accountant');
+    await loadStudents();
+    await loadDashboard();
+    await loadMyPasskeys();
+    notify('Signed in successfully with a passkey.');
+  } catch (error) {
+    console.error('Passkey dashboard error:', error);
+    notify('Login succeeded, but dashboard loading failed: ' + error.message);
+  }
+});
+</script>
+<script src="/passkeys-login.js"></script>
 
 </body>
 </html>

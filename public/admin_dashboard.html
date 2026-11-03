@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toptraits · Admin Dashboard Review</title>
+<style>
+:root{color-scheme:dark;--bg:#091411;--card:#11221e;--card2:#142823;--ink:#eff8f5;--mut:#98b0aa;--line:#253d37;--teal:#53bdbd;--ok:#4fd195;--warn:#f2b254;--risk:#ff7f91}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}
+.layout{display:grid;grid-template-columns:205px minmax(0,1fr);gap:18px;min-height:100vh;padding:18px;max-width:1800px;margin:auto}.sidebar{background:#0b1714;border:1px solid #172c26;border-radius:14px;padding:14px 10px;display:flex;flex-direction:column;gap:5px;min-width:0;align-self:stretch}.brand{font-size:11px;letter-spacing:.12em;font-weight:800;color:var(--mut);padding:8px 10px 12px;text-transform:uppercase}
+.nav{display:flex;align-items:center;gap:10px;border:1px solid transparent;background:transparent;color:var(--mut);border-radius:9px;min-height:42px;padding:10px 11px;text-align:left;font-weight:650;width:100%}.nav:hover{background:#11231f;color:var(--ink)}.nav.active{background:#123b37;color:var(--teal);border-color:#1d4b45}.nav-icon{width:20px;flex:0 0 20px;text-align:center;font-size:16px}.sidebar-note{margin-top:auto;border:1px solid #23564f;background:#102923;border-radius:11px;padding:12px;color:var(--mut);font-size:12px}.sidebar-note b{display:block;color:var(--teal);margin-bottom:4px}
+main{min-width:0;display:flex;flex-direction:column;gap:16px;padding:2px 4px 22px}.head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}.h1{font-size:26px;font-weight:800;letter-spacing:-.025em;margin:0}.sub{color:var(--mut);font-size:13px;margin-top:4px}.demo-chip{border:1px solid #4b4827;border-radius:999px;padding:5px 10px;color:var(--warn);background:#2b2817;font-size:11px;font-weight:800}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;min-width:0}.card-label{font-size:12px;color:var(--mut)}.kpi-value{margin-top:7px;font-size:25px;font-weight:800;letter-spacing:-.02em}.kpi-note{font-size:12px;color:var(--mut);margin-top:4px}.progress{height:6px;border-radius:999px;background:#29423b;overflow:hidden;margin-top:10px}.progress span{display:block;height:100%;background:var(--teal);border-radius:999px}
+.decision{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}.decision-title{padding:15px 17px;border-bottom:1px solid var(--line);font-size:15px;font-weight:800}.decision-row{display:flex;align-items:center;gap:14px;padding:13px 16px;border-bottom:1px solid #223a34}.decision-row:last-child{border-bottom:0}.dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px;background:var(--teal)}.dot.warn{background:var(--warn)}.dot.risk{background:var(--risk)}.decision-copy{flex:1;min-width:0}.decision-copy b{display:block;font-size:13px}.decision-copy span{display:block;margin-top:2px;color:var(--mut);font-size:12px}.confidence{font-size:11px;color:var(--mut);white-space:nowrap}
+.btn{border:1px solid #2b4a43;background:#162c26;color:var(--ink);border-radius:9px;padding:9px 13px;font-weight:750;font-size:12px;white-space:nowrap}.btn:hover{background:#1b3830}.primary{background:var(--teal);color:#07211e;border-color:var(--teal)}.primary:hover{background:#71d2d2}
+.shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.shortcut{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:90px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px;color:var(--ink);font-weight:700}.shortcut:hover{border-color:#3a6b60;background:var(--card2)}.shortcut-icon{font-size:20px;color:var(--teal)}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}.table{width:100%;min-width:650px;border-collapse:collapse}.table th{background:#0e1d19;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;font-size:11px;text-align:left;padding:12px}.table td{border-top:1px solid var(--line);padding:12px;font-size:13px}.pill{display:inline-flex;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:800;background:#183b32;color:var(--ok)}.pill.warn{background:#3a301a;color:var(--warn)}.pill.risk{background:#3d2228;color:var(--risk)}.search{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#091411;color:var(--ink);outline:none}.search:focus{border-color:var(--teal);box-shadow:0 0 0 3px #53bdbd22}.notice{padding:11px 13px;border:1px solid #2a6155;background:#102b24;border-radius:10px;color:var(--teal);font-size:12px}.empty{padding:24px;text-align:center;color:var(--mut)}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.label{display:block;margin-bottom:6px;color:var(--mut);font-size:12px;font-weight:700}.textarea{width:100%;min-height:110px;padding:12px;border:1px solid var(--line);border-radius:10px;background:#091411;color:var(--ink)}
+@media(max-width:1050px){.layout{grid-template-columns:175px minmax(0,1fr);gap:12px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:720px){.layout{grid-template-columns:1fr;padding:10px}.sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.brand,.sidebar-note{grid-column:1/-1}.main{padding:0}.decision-row{flex-wrap:wrap}.confidence{margin-left:20px}.grid2{grid-template-columns:1fr}}@media(max-width:430px){.kpis,.shortcuts{grid-template-columns:1fr}.sidebar{grid-template-columns:1fr}.h1{font-size:22px}}
+</style></head><body>
+<div class="layout"><aside class="sidebar" aria-label="Admin navigation"><div class="brand">ADMIN WORKSPACE</div>
+<button class="nav active" data-tab="home"><span class="nav-icon">⌂</span>Home</button>
+<button class="nav" data-tab="students"><span class="nav-icon">♙</span>Students</button>
+<button class="nav" data-tab="fees"><span class="nav-icon">₹</span>Fees</button>
+<button class="nav" data-tab="setup"><span class="nav-icon">⚙</span>Setup</button>
+<button class="nav" data-tab="messages"><span class="nav-icon">▱</span>Messages</button>
+<div class="sidebar-note"><b>◈ School OS</b>Local administrator workspace.<br>All figures on this page are demo data.</div></aside>
+<main><section id="content"></section></main></div>
+<script>
+'use strict';
+const students=[
+{id:'DEMO0601',name:'Ananya Iyer',class:'6-A',attendance:'97%',signal:'On track',tone:'ok'},
+{id:'DEMO0712',name:'Rohan Das',class:'7-B',attendance:'81%',signal:'Attendance low',tone:'warn'},
+{id:'DEMO0804',name:'Meera Nair',class:'8-A',attendance:'72%',signal:'Needs review',tone:'risk'},
+{id:'DEMO0908',name:'Arjun Menon',class:'9-A',attendance:'94%',signal:'On track',tone:'ok'},
+{id:'DEMO0815',name:'Diya Rao',class:'8-B',attendance:'86%',signal:'Marks review',tone:'warn'}];
+let activeTab='home',search='',noticeDraft='',noticeMessage='',paymentMatchesConfirmed=false;
+const decisions=[
+{id:'import',title:'48 student rows are ready to import',detail:'All 12 columns were matched. 2 phone numbers need a fix.',confidence:'94% sure',button:'Open import',tone:'info'},
+{id:'verify',title:'42 applications are ready to verify',detail:'Documents were read and match the forms.',confidence:'91% sure',button:'Verify all',tone:'warn'},
+{id:'confirm',title:'3 UPI payments matched to invoices',detail:'Auto-reconciled against the bank file.',confidence:'99% sure',button:()=>paymentMatchesConfirmed?'Confirmed':'Confirm',tone:'ok'}];
+const content=document.getElementById('content');
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function pill(text,tone='ok'){return `<span class="pill ${tone==='ok'?'':tone}">${esc(text)}</span>`;}
+function table(headers,rows){return `<div class="table-wrap"><table class="table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}
+function head(title,subtitle,chip='DEMO DATA'){return `<div class="head"><div><h1 class="h1">${title}</h1><div class="sub">${subtitle}</div></div><span class="demo-chip">${chip}</span></div>`;}
+function card(title,body){return `<section class="card"><div style="font-weight:800;margin-bottom:12px">${title}</div>${body}</section>`;}
+function notice(){return noticeMessage?`<div class="notice" role="status">${esc(noticeMessage)}</div>`:'';}
+function render(){
+document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.tab===activeTab));
+let html='';
+if(activeTab==='home'){
+html=`${head('Good morning','Fees, admissions and data today','● DEMO DATA · not connected to school database')}
+<section class="kpis" aria-label="School overview">
+<div class="card"><div class="card-label">Attendance today</div><div class="kpi-value">94.2%</div><div class="kpi-note">School-wide demo attendance</div></div>
+<div class="card"><div class="card-label">Fees collected</div><div class="kpi-value">₹42.8L <span style="font-size:13px;font-weight:650;color:var(--mut)">of ₹50L</span></div><div class="progress"><span style="width:85.6%"></span></div><div class="kpi-note">85.6% of demo target</div></div>
+<div class="card"><div class="card-label">Need attention</div><div class="kpi-value">14 <span style="font-size:14px">students</span></div><div class="kpi-note">Attendance or marks follow-up</div></div>
+<div class="card"><div class="card-label">Applicants</div><div class="kpi-value">128 <span style="font-size:13px;font-weight:650">· 42 to verify</span></div><div class="kpi-note">Admissions pipeline · demo data</div></div></section>
+<section class="decision"><div class="decision-title">Needs your decision</div>${decisions.map(d=>`<div class="decision-row"><span class="dot ${d.tone==='warn'?'warn':d.tone==='risk'?'risk':''}"></span><div class="decision-copy"><b>${d.title}</b><span>${d.detail}</span></div><span class="confidence">${d.confidence}</span><button class="btn ${d.id==='import'?'primary':''}" data-action="${d.id}">${typeof d.button==='function'?d.button():d.button}</button></div>`).join('')}</section>
+<section class="shortcuts"><button class="shortcut" data-action="applicants"><span class="shortcut-icon">♙</span><span>Applicants</span></button><button class="shortcut" data-action="collect-fees"><span class="shortcut-icon">₹</span><span>Collect fees</span></button><button class="shortcut" data-action="import-students"><span class="shortcut-icon">⊕</span><span>Import students</span></button><button class="shortcut" data-action="send-notice"><span class="shortcut-icon">▱</span><span>Send a notice</span></button></section>${notice()}`;
+}
+if(activeTab==='students'){
+const filtered=students.filter(s=>[s.id,s.name,s.class,s.signal].some(v=>v.toLowerCase().includes(search.toLowerCase())));
+html=`${head('Students & admissions','Search the sample student register and review admission readiness.')}${notice()}<section class="card"><label class="label" for="studentSearch">Search students</label><input id="studentSearch" class="search" type="search" value="${esc(search)}" placeholder="Name, admission number, class or signal"></section>${card('Student register · sample rows',table(['Admission no.','Student','Class','Attendance','AI signal'],filtered.map(s=>[s.id,s.name,s.class,s.attendance,pill(s.signal,s.tone)]))||'<div class="empty">No matching students.</div>')}`;
+}
+if(activeTab==='fees'){
+html=`${head('Fees overview','Collection and payment reconciliation summary.')}${notice()}<section class="kpis"><div class="card"><div class="card-label">Collected</div><div class="kpi-value">₹42.8L</div><div class="kpi-note">of ₹50L demo target</div></div><div class="card"><div class="card-label">Collection progress</div><div class="kpi-value">85.6%</div><div class="progress"><span style="width:85.6%"></span></div></div><div class="card"><div class="card-label">UPI matches</div><div class="kpi-value">3</div><div class="kpi-note">Matched to invoices · demo</div></div><div class="card"><div class="card-label">Overdue follow-up</div><div class="kpi-value">14</div><div class="kpi-note">Requires review · demo</div></div></section>${card('Payment matching',`<p class="sub">Three demo UPI transactions were matched to invoices.</p><button class="btn primary" data-action="confirm">${paymentMatchesConfirmed?'Confirmed in demo':'Confirm matched payments'}</button>`)}`;
+}
+if(activeTab==='setup'){
+html=`${head('Setup & imports','Review a student import before it is applied.')}${notice()}${card('Student import preview',`<p class="sub">48 sample student rows are ready for review. All 12 columns matched; 2 phone numbers need correction.</p><div class="grid2" style="margin:16px 0"><div class="card"><div class="card-label">Rows ready</div><div class="kpi-value">48</div></div><div class="card"><div class="card-label">Fields to fix</div><div class="kpi-value">2</div></div></div><button class="btn primary" data-action="import">Open import preview</button>`)}${card('School setup checklist',`<p>Academic year <span style="float:right">${pill('2026–27 · demo')}</span></p><p>Classes and sections <span style="float:right">${pill('Sample configuration')}</span></p><p>Parent/staff messaging <span style="float:right">${pill('Not connected','warn')}</span></p>`)}`;
+}
+if(activeTab==='messages'){
+html=`${head('Messages','Prepare a school notice for review.','DEMO ONLY · no delivery')}${notice()}${card('Notice text',`<label class="label" for="noticeDraft">Notice text</label><textarea id="noticeDraft" class="textarea" placeholder="Enter a sample notice for parents or staff...">${esc(noticeDraft)}</textarea><div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn primary" data-action="prepare-notice">Prepare notice</button></div><p class="sub" style="margin-top:12px">This demo does not send emails, SMS or WhatsApp messages.</p>`)}`;
+}
+content.innerHTML=html;
+const input=document.getElementById('studentSearch');if(input)input.addEventListener('input',e=>{search=e.target.value;const pos=e.target.selectionStart;render();const next=document.getElementById('studentSearch');next.focus();next.setSelectionRange(pos,pos);});
+const draft=document.getElementById('noticeDraft');if(draft)draft.addEventListener('input',e=>noticeDraft=e.target.value);
+}
+function action(a){
+const actions={
+'import':['setup','Demo only: import preview is open. No file has been imported.'],
+'verify':['students','Applicant verification queue opened. This is a local demo; no applications were changed.'],
+'confirm':['fees','UPI match marked confirmed in this demo only. No payment data was changed.'],
+'applicants':['students','Applicant and student directory opened.'],
+'collect-fees':['fees','Fee overview opened. No payment was collected.'],
+'import-students':['setup','Student import workspace opened. No file was imported.'],
+'send-notice':['messages','Notice workspace opened. Nothing has been sent.']};
+if(a==='prepare-notice'){noticeMessage=noticeDraft.trim()===''?'Write a notice message first.':'Demo only: notice prepared for review. It has not been sent to parents or staff.';render();return;}
+if(!actions[a])return;
+[activeTab,noticeMessage]=actions[a];if(a==='confirm')paymentMatchesConfirmed=true;render();
+}
+document.querySelector('.sidebar').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b){activeTab=b.dataset.tab;noticeMessage='';render();}});
+content.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(b)action(b.dataset.action);});
+render();
+</script></body></html>

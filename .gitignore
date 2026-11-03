@@ -24,3 +24,17 @@
 *.before-cache-fix
 *.before-portable-fix
 *.backup_*
+
+# Additional local files
+/node_modules/
+/public/build/
+/public/hot
+/backups/
+*.backup*
+*.bak-*
+*.before-*
+*.before_*
+.new-db-password
+.DS_Store
+.idea/
+.vscode/
